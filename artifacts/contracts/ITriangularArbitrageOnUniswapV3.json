@@ -1,0 +1,4245 @@
+{
+  "contractName": "ITriangularArbitrageOnUniswapV3",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "whiteAddress",
+          "type": "address"
+        }
+      ],
+      "name": "AddWhiteAddress",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "profitToken",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "profitAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Arbitrage",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "ClearWhiteAddress",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sender",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deposit",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "fromAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "toAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "poolAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint160",
+          "name": "sqrtPriceLimitX96",
+          "type": "uint160"
+        }
+      ],
+      "name": "PrintSwap",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "whiteAddress",
+          "type": "address"
+        }
+      ],
+      "name": "RemoveWhiteAddress",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "whiteAddress",
+          "type": "address"
+        }
+      ],
+      "name": "addWhiteAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "whiteAddress",
+          "type": "address"
+        }
+      ],
+      "name": "removeWhiteAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "clearWhiteAddress",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "checker",
+          "type": "address"
+        }
+      ],
+      "name": "isWhiteAddress",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "uint160",
+          "name": "amount",
+          "type": "uint160"
+        }
+      ],
+      "name": "deposit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint160",
+          "name": "amount",
+          "type": "uint160"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getAccountBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getAllBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "withdrawAll",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "poolAddress",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint16",
+          "name": "tickSapcingOffset",
+          "type": "uint16"
+        }
+      ],
+      "name": "getPairTicks",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint160",
+              "name": "sqrtPriceX96",
+              "type": "uint160"
+            },
+            {
+              "internalType": "int24",
+              "name": "tick",
+              "type": "int24"
+            },
+            {
+              "internalType": "int24",
+              "name": "tickSpace",
+              "type": "int24"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "int24",
+                  "name": "tick",
+                  "type": "int24"
+                },
+                {
+                  "internalType": "int128",
+                  "name": "liquidityNet",
+                  "type": "int128"
+                },
+                {
+                  "internalType": "uint128",
+                  "name": "liquidityGross",
+                  "type": "uint128"
+                }
+              ],
+              "internalType": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick[]",
+              "name": "liquidties",
+              "type": "tuple[]"
+            }
+          ],
+          "internalType": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput[]",
+          "name": "prices",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "poolAddressList",
+          "type": "address[]"
+        },
+        {
+          "internalType": "uint160",
+          "name": "amount",
+          "type": "uint160"
+        },
+        {
+          "internalType": "uint160",
+          "name": "minProfit",
+          "type": "uint160"
+        }
+      ],
+      "name": "arbitrage",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"whiteAddress\",\"type\":\"address\"}],\"name\":\"AddWhiteAddress\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"profitToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"profitAmount\",\"type\":\"uint256\"}],\"name\":\"Arbitrage\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"ClearWhiteAddress\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Deposit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"fromAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"toAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"poolAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint160\",\"name\":\"sqrtPriceLimitX96\",\"type\":\"uint160\"}],\"name\":\"PrintSwap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"whiteAddress\",\"type\":\"address\"}],\"name\":\"RemoveWhiteAddress\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"whiteAddress\",\"type\":\"address\"}],\"name\":\"addWhiteAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"poolAddressList\",\"type\":\"address[]\"},{\"internalType\":\"uint160\",\"name\":\"amount\",\"type\":\"uint160\"},{\"internalType\":\"uint160\",\"name\":\"minProfit\",\"type\":\"uint160\"}],\"name\":\"arbitrage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"clearWhiteAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint160\",\"name\":\"amount\",\"type\":\"uint160\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getAccountBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getAllBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"poolAddress\",\"type\":\"address[]\"},{\"internalType\":\"uint16\",\"name\":\"tickSapcingOffset\",\"type\":\"uint16\"}],\"name\":\"getPairTicks\",\"outputs\":[{\"components\":[{\"internalType\":\"uint160\",\"name\":\"sqrtPriceX96\",\"type\":\"uint160\"},{\"internalType\":\"int24\",\"name\":\"tick\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"tickSpace\",\"type\":\"int24\"},{\"components\":[{\"internalType\":\"int24\",\"name\":\"tick\",\"type\":\"int24\"},{\"internalType\":\"int128\",\"name\":\"liquidityNet\",\"type\":\"int128\"},{\"internalType\":\"uint128\",\"name\":\"liquidityGross\",\"type\":\"uint128\"}],\"internalType\":\"struct ITriangularArbitrageOnUniswapV3.PopulatedTick[]\",\"name\":\"liquidties\",\"type\":\"tuple[]\"}],\"internalType\":\"struct ITriangularArbitrageOnUniswapV3.PoolPairOuput[]\",\"name\":\"prices\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"checker\",\"type\":\"address\"}],\"name\":\"isWhiteAddress\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"whiteAddress\",\"type\":\"address\"}],\"name\":\"removeWhiteAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint160\",\"name\":\"amount\",\"type\":\"uint160\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"withdrawAll\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"events\":{\"AddWhiteAddress(address)\":{\"params\":{\"whiteAddress\":\"\\u767d\\u540d\\u5355\\u5730\\u5740\"}},\"Arbitrage(address,address,uint256,uint256)\":{\"params\":{\"amount\":\"\\u672c\\u6b21\\u53d1\\u751f\\u7684\\u8d77\\u59cb\\u91d1\\u989d\",\"profitAmount\":\"\\u672c\\u6b21\\u6536\\u76ca\\u7684\\u91d1\\u989d\",\"profitToken\":\"\\u6536\\u76ca\\u7684\\u5e01\\u79cd\\u5408\\u7ea6\\u5730\\u5740\",\"sender\":\"\\u5957\\u5229\\u4eba\\u5730\\u5740\"}},\"Deposit(address,address,uint256)\":{\"params\":{\"sender\":\"\\u5145\\u503c\\u7684\\u4eba\"}},\"RemoveWhiteAddress(address)\":{\"params\":{\"whiteAddress\":\"\\u767d\\u540d\\u5355\\u5730\\u5740\"}}},\"kind\":\"dev\",\"methods\":{\"addWhiteAddress(address)\":{\"params\":{\"whiteAddress\":\"\\u9700\\u8981\\u6dfb\\u52a0\\u7684\\u767d\\u540d\\u5355\\u5730\\u5740\"}},\"arbitrage(address,address[],uint160,uint160)\":{\"params\":{\"amount\":\"\\u672c\\u6b21\\u9700\\u8981\\u501f\\u8d37/\\u4ea4\\u6613\\u7684\\u91d1\\u989d\",\"minProfit\":\"\\u6700\\u5c0f\\u6536\\u76ca\\u91d1\\u989d\\uff0c\\u5355\\u4f4d\\u662f token list \\u7b2c\\u4e00\\u4e2a \\u5e01\\u7684\\u5355\\u4f4d\",\"poolAddressList\":\"pool \\u5730\\u5740\\uff0c\\u5fc5\\u987b\\u548c tokens \\u5339\\u914d\",\"token\":\"tokenA \\u7684\\u5408\\u7ea6\\u5730\\u5740\"}},\"deposit(address,uint160)\":{\"params\":{\"amount\":\"\\u8981\\u5145\\u503c\\u7684\\u4ee3\\u5e01\\u91d1\\u989d\",\"token\":\"\\u8981\\u5145\\u503c\\u7684\\u4ee3\\u5e01 token\"}},\"getAccountBalance(address)\":{\"params\":{\"token\":\"\\u67e5\\u8be2\\u7684\\u4ee3\\u5e01\"},\"returns\":{\"_0\":\"\\u5f53\\u524d\\u4ee3\\u5e01\\u5b58\\u50a8\\u7684\\u91d1\\u989d\"}},\"getAllBalance(address)\":{\"params\":{\"token\":\"\\u83b7\\u53d6 token \\u4ee3\\u5e01\"},\"returns\":{\"_0\":\"\\u4ee3\\u5e01\\u603b\\u7684\\u4f59\\u989d\"}},\"getPairTicks(address[],uint16)\":{\"params\":{\"poolAddress\":\"uniswap pool \\u5730\\u5740\",\"tickSapcingOffset\":\"\\u83b7\\u53d6\\u6df1\\u5ea6\\u7684\\u504f\\u79fb\\u91cf\\uff0c\\u8fd4\\u56de\\u7684\\u7ed3\\u679c\\u6700\\u591a\\u662f tick spacing offset * 2 + 1 \\u4e2a\"},\"returns\":{\"prices\":\"\\u4ef7\\u683c\\u5217\\u8868[{sqrtPriceX96, tick}]\\uff0c\\u987a\\u5e8f\\u548c pool \\u653e\\u5165\\u7684\\u987a\\u5e8f\\u76f8\\u540c\\uff0cliquidties \\u7684\\u987a\\u5e8f\\u662f\\u4ef7\\u683c\\u4ece\\u4f4e\\u5230\\u9ad8\\u6392\\u5e8f\"}},\"isWhiteAddress(address)\":{\"params\":{\"checker\":\"\\u9700\\u8981\\u68c0\\u67e5\\u7684\\u5730\\u5740\"},\"returns\":{\"_0\":\"\\u7ed3\\u679c\\uff0ctrue \\u662f\\u767d\\u540d\\u5355\\uff0cfalse \\u4e0d\\u662f\\u767d\\u540d\\u5355\"}},\"removeWhiteAddress(address)\":{\"params\":{\"whiteAddress\":\"\\u9700\\u8981\\u5220\\u9664\\u7684\\u5730\\u5740\"}},\"withdraw(address,address,uint160)\":{\"params\":{\"amount\":\"\\u8981\\u63d0\\u73b0\\u7684\\u4ee3\\u5e01\\u91d1\\u989d\",\"to\":\"\\u63d0\\u73b0\\u7684\\u76ee\\u6807\\u5730\\u5740\",\"token\":\"\\u8981\\u63d0\\u73b0\\u7684\\u4ee3\\u5e01 token\"}},\"withdrawAll(address)\":{\"params\":{\"token\":\"token \\u4ee3\\u5e01\"},\"returns\":{\"_0\":\"\\u672c\\u5730\\u63d0\\u5e01\\u7684\\u6570\\u91cf\"}}},\"version\":1},\"userdoc\":{\"events\":{\"AddWhiteAddress(address)\":{\"notice\":\"\\u6dfb\\u52a0\\u6210\\u529f\\u4e00\\u4e2a\\u767d\\u540d\\u5355\\u4e8b\\u4ef6\"},\"Arbitrage(address,address,uint256,uint256)\":{\"notice\":\"\\u5957\\u5229\\u6210\\u529f\\u53d1\\u9001\\u7684\\u4e8b\\u4ef6\"},\"ClearWhiteAddress()\":{\"notice\":\"amountSpecified\"},\"Deposit(address,address,uint256)\":{\"notice\":\"\\u5145\\u503c\\u4e8b\\u4ef6\"},\"PrintSwap(address,address,address,uint256,uint160)\":{\"notice\":\"da'yin\"},\"RemoveWhiteAddress(address)\":{\"notice\":\"\\u6dfb\\u52a0\\u6210\\u529f\\u4e00\\u4e2a\\u767d\\u540d\\u5355\\u4e8b\\u4ef6\"}},\"kind\":\"user\",\"methods\":{\"addWhiteAddress(address)\":{\"notice\":\"\\u6dfb\\u52a0\\u4e00\\u4e2a\\u767d\\u540d\\u5355\\u5730\\u5740\"},\"arbitrage(address,address[],uint160,uint160)\":{\"notice\":\"\\u6839\\u636e\\u586b\\u5165\\u7684poolAddresList\\uff0c\\u6765\\u8fdb\\u884c\\u5957\\u5229\\uff0cpoolAddresList \\u5fc5\\u987b\\u662f\\u4e00\\u4e2a\\u95ed\\u73af,A -> B -> ... -> A\\uff0c\\u987a\\u5e8f\\u4ee3\\u8868\\u4e86\\u4ea4\\u6613\\u8def\\u5f84\"},\"clearWhiteAddress()\":{\"notice\":\"\\u6e05\\u7a7a\\u767d\\u540d\\u5355\"},\"deposit(address,uint160)\":{\"notice\":\"\\u5145\\u503c\"},\"getAccountBalance(address)\":{\"notice\":\"\\u83b7\\u53d6\\u7279\\u5b9a\\u4ee3\\u5e01\\u7684\\u5b58\\u50a8\\u6570\\u91cf\"},\"getAllBalance(address)\":{\"notice\":\"\\u83b7\\u53d6\\u7279\\u5b9a\\u4ee3\\u5e01\\u7684\\u6240\\u6709\\u4f59\\u989d\\uff0c\\u53ea\\u6709 owner \\u53ef\\u4ee5\\u4f7f\\u7528\"},\"getPairTicks(address[],uint16)\":{\"notice\":\"\\u83b7\\u53d6\\u591a\\u4e2a\\u5e01\\u5bf9\\u7684\\u6570\\u636e\"},\"isWhiteAddress(address)\":{\"notice\":\"\\u83b7\\u53d6\\u5f53\\u524d\\u767d\\u540d\\u5355\\u5730\\u5740\\u5217\\u8868\"},\"removeWhiteAddress(address)\":{\"notice\":\"\\u79fb\\u9664\\u4e00\\u4e2a\\u767d\\u540d\\u5355\"},\"withdraw(address,address,uint160)\":{\"notice\":\"\\u63d0\\u73b0\"},\"withdrawAll(address)\":{\"notice\":\"\\u5c06\\u7279\\u5b9a\\u4ee3\\u5e01\\u7684\\u6240\\u6709\\u4f59\\u989d\\u90fd\\u63d0\\u73b0\\u5230 owner \\u8d26\\u6237\\uff0c\\u53ea\\u6709 owner \\u53ef\\u4ee5\\u4f7f\\u7528\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/flash/ITriangularArbitrageOnUniswapV3.sol\":\"ITriangularArbitrageOnUniswapV3\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/flash/ITriangularArbitrageOnUniswapV3.sol\":{\"keccak256\":\"0x3921c52149e08948f27c1b69d0a8d4f0b385ed083cea8e1ad6f1853912cdb07a\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://a09adea0e25b8c66912b4786a810daa16792b633e9d4d4372c9163bdf0a02e27\",\"dweb:/ipfs/QmP5P2koH79ASD6mCfYzLVZMNVL3hNpCnzfi1VP5w4gjW6\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.7.4;\npragma abicoder v2;\n\ninterface ITriangularArbitrageOnUniswapV3 {\n    /// @notice 币对数据结构体\n    struct PoolPairOuput {\n        uint160 sqrtPriceX96;\n        int24 tick;\n        int24 tickSpace;\n        PopulatedTick[] liquidties;\n    }\n    /// @notice tick 的流动性\n    struct PopulatedTick {\n        int24 tick;\n        int128 liquidityNet;\n        uint128 liquidityGross;\n    }\n\n    /// @notice 添加一个白名单地址\n    /// @param whiteAddress 需要添加的白名单地址\n    function addWhiteAddress(address whiteAddress) external;\n\n    /// @notice 移除一个白名单\n    /// @param whiteAddress 需要删除的地址\n    function removeWhiteAddress(address whiteAddress) external;\n\n    /// @notice 清空白名单\n    function clearWhiteAddress() external;\n\n    /// @notice 获取当前白名单地址列表\n    /// @param checker 需要检查的地址\n    /// @return 结果，true 是白名单，false 不是白名单\n    function isWhiteAddress(address checker) external view returns (bool);\n\n    /// @notice 充值\n    /// @param token 要充值的代币 token\n    /// @param amount 要充值的代币金额\n    function deposit(address token, uint160 amount) external;\n\n    /// @notice 提现\n    /// @param token 要提现的代币 token\n    /// @param to 提现的目标地址\n    /// @param amount 要提现的代币金额\n    function withdraw(\n        address token,\n        address to,\n        uint160 amount\n    ) external;\n\n    /// @notice 获取特定代币的存储数量\n    /// @param token 查询的代币\n    /// @return 当前代币存储的金额\n    function getAccountBalance(address token) external view returns (uint256);\n\n    /// @notice 获取特定代币的所有余额，只有 owner 可以使用\n    /// @param token  获取 token 代币\n    /// @return 代币总的余额\n    function getAllBalance(address token) external view returns (uint256);\n\n    /// @notice 将特定代币的所有余额都提现到 owner 账户，只有 owner 可以使用\n    /// @param token token 代币\n    /// @return 本地提币的数量\n    function withdrawAll(address token) external returns (uint256);\n\n    /// @notice 获取多个币对的数据\n    /// @param poolAddress uniswap pool 地址\n    /// @param tickSapcingOffset 获取深度的偏移量，返回的结果最多是 tick spacing offset * 2 + 1 个\n    /// @return prices 价格列表[{sqrtPriceX96, tick}]，顺序和 pool 放入的顺序相同，liquidties 的顺序是价格从低到高排序\n    function getPairTicks(\n        address[] calldata poolAddress,\n        uint16 tickSapcingOffset\n    ) external view returns (PoolPairOuput[] memory prices);\n\n    /// @notice 根据填入的poolAddresList，来进行套利，poolAddresList 必须是一个闭环,A -> B -> ... -> A，顺序代表了交易路径\n    /// @param token tokenA 的合约地址\n    /// @param poolAddressList pool 地址，必须和 tokens 匹配\n    /// @param amount 本次需要借贷/交易的金额\n    /// @param minProfit 最小收益金额，单位是 token list 第一个 币的单位\n    function arbitrage(\n        address token,\n        address[] calldata poolAddressList,\n        uint160 amount,\n        uint160 minProfit\n    ) external;\n\n    /// @notice 套利成功发送的事件\n    /// @param sender 套利人地址\n    /// @param profitToken 收益的币种合约地址\n    /// @param amount 本次发生的起始金额\n    /// @param profitAmount 本次收益的金额\n    event Arbitrage(\n        address indexed sender,\n        address indexed profitToken,\n        uint256 amount,\n        uint256 profitAmount\n    );\n\n    /// @notice 添加成功一个白名单事件\n    /// @param whiteAddress 白名单地址\n    event AddWhiteAddress(address indexed whiteAddress);\n    /// @notice 添加成功一个白名单事件\n    /// @param whiteAddress 白名单地址\n    event RemoveWhiteAddress(address indexed whiteAddress);\n    /// @notice amountSpecified\n    event ClearWhiteAddress();\n\n    /// @notice 充值事件\n    /// @param sender 充值的人\n    event Deposit(\n        address indexed sender,\n        address indexed token,\n        uint256 amount\n    );\n\n    /// da'yin\n    event PrintSwap(\n        address fromAddress,\n        address toAddress,\n        address poolAddress,\n        uint256 amount,\n        uint160 sqrtPriceLimitX96\n    );\n}\n",
+  "sourcePath": "/Users/shifenghu/Documents/work/study/blockchain/uniswap/v3-ui/uniswap-v3/contracts/flash/ITriangularArbitrageOnUniswapV3.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/flash/ITriangularArbitrageOnUniswapV3.sol",
+    "exportedSymbols": {
+      "ITriangularArbitrageOnUniswapV3": [
+        1757
+      ]
+    },
+    "id": 1758,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1601,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.7",
+          ".4"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:24:14"
+      },
+      {
+        "id": 1602,
+        "literals": [
+          "abicoder",
+          "v2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "57:19:14"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "fullyImplemented": false,
+        "id": 1757,
+        "linearizedBaseContracts": [
+          1757
+        ],
+        "name": "ITriangularArbitrageOnUniswapV3",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "ITriangularArbitrageOnUniswapV3.PoolPairOuput",
+            "id": 1612,
+            "members": [
+              {
+                "constant": false,
+                "id": 1604,
+                "mutability": "mutable",
+                "name": "sqrtPriceX96",
+                "nodeType": "VariableDeclaration",
+                "scope": 1612,
+                "src": "195:20:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint160",
+                  "typeString": "uint160"
+                },
+                "typeName": {
+                  "id": 1603,
+                  "name": "uint160",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "195:7:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1606,
+                "mutability": "mutable",
+                "name": "tick",
+                "nodeType": "VariableDeclaration",
+                "scope": 1612,
+                "src": "225:10:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int24",
+                  "typeString": "int24"
+                },
+                "typeName": {
+                  "id": 1605,
+                  "name": "int24",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "225:5:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1608,
+                "mutability": "mutable",
+                "name": "tickSpace",
+                "nodeType": "VariableDeclaration",
+                "scope": 1612,
+                "src": "245:15:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int24",
+                  "typeString": "int24"
+                },
+                "typeName": {
+                  "id": 1607,
+                  "name": "int24",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "245:5:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1611,
+                "mutability": "mutable",
+                "name": "liquidties",
+                "nodeType": "VariableDeclaration",
+                "scope": 1612,
+                "src": "270:26:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_PopulatedTick_$1619_storage_$dyn_storage_ptr",
+                  "typeString": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick[]"
+                },
+                "typeName": {
+                  "baseType": {
+                    "id": 1609,
+                    "name": "PopulatedTick",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 1619,
+                    "src": "270:13:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PopulatedTick_$1619_storage_ptr",
+                      "typeString": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick"
+                    }
+                  },
+                  "id": 1610,
+                  "nodeType": "ArrayTypeName",
+                  "src": "270:15:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_PopulatedTick_$1619_storage_$dyn_storage_ptr",
+                    "typeString": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick[]"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "PoolPairOuput",
+            "nodeType": "StructDefinition",
+            "scope": 1757,
+            "src": "164:139:14",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "ITriangularArbitrageOnUniswapV3.PopulatedTick",
+            "id": 1619,
+            "members": [
+              {
+                "constant": false,
+                "id": 1614,
+                "mutability": "mutable",
+                "name": "tick",
+                "nodeType": "VariableDeclaration",
+                "scope": 1619,
+                "src": "373:10:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int24",
+                  "typeString": "int24"
+                },
+                "typeName": {
+                  "id": 1613,
+                  "name": "int24",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "373:5:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1616,
+                "mutability": "mutable",
+                "name": "liquidityNet",
+                "nodeType": "VariableDeclaration",
+                "scope": 1619,
+                "src": "393:19:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_int128",
+                  "typeString": "int128"
+                },
+                "typeName": {
+                  "id": 1615,
+                  "name": "int128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "393:6:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int128",
+                    "typeString": "int128"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 1618,
+                "mutability": "mutable",
+                "name": "liquidityGross",
+                "nodeType": "VariableDeclaration",
+                "scope": 1619,
+                "src": "422:22:14",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint128",
+                  "typeString": "uint128"
+                },
+                "typeName": {
+                  "id": 1617,
+                  "name": "uint128",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "422:7:14",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint128",
+                    "typeString": "uint128"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "PopulatedTick",
+            "nodeType": "StructDefinition",
+            "scope": 1757,
+            "src": "342:109:14",
+            "visibility": "public"
+          },
+          {
+            "documentation": {
+              "id": 1620,
+              "nodeType": "StructuredDocumentation",
+              "src": "457:98:14",
+              "text": "@notice 添加一个白名单地址\n @param whiteAddress 需要添加的白名单地址"
+            },
+            "functionSelector": "f65ad55c",
+            "id": 1625,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "addWhiteAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1623,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1622,
+                  "mutability": "mutable",
+                  "name": "whiteAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1625,
+                  "src": "585:20:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1621,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "585:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "584:22:14"
+            },
+            "returnParameters": {
+              "id": 1624,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "615:0:14"
+            },
+            "scope": 1757,
+            "src": "560:56:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1626,
+              "nodeType": "StructuredDocumentation",
+              "src": "622:83:14",
+              "text": "@notice 移除一个白名单\n @param whiteAddress 需要删除的地址"
+            },
+            "functionSelector": "2e135c54",
+            "id": 1631,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "removeWhiteAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1629,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1628,
+                  "mutability": "mutable",
+                  "name": "whiteAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1631,
+                  "src": "738:20:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1627,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "738:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "737:22:14"
+            },
+            "returnParameters": {
+              "id": 1630,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "768:0:14"
+            },
+            "scope": 1757,
+            "src": "710:59:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1632,
+              "nodeType": "StructuredDocumentation",
+              "src": "775:27:14",
+              "text": "@notice 清空白名单"
+            },
+            "functionSelector": "72406377",
+            "id": 1635,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "clearWhiteAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1633,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "833:2:14"
+            },
+            "returnParameters": {
+              "id": 1634,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "844:0:14"
+            },
+            "scope": 1757,
+            "src": "807:38:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1636,
+              "nodeType": "StructuredDocumentation",
+              "src": "851:157:14",
+              "text": "@notice 获取当前白名单地址列表\n @param checker 需要检查的地址\n @return 结果，true 是白名单，false 不是白名单"
+            },
+            "functionSelector": "333dc856",
+            "id": 1643,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isWhiteAddress",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1639,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1638,
+                  "mutability": "mutable",
+                  "name": "checker",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1643,
+                  "src": "1037:15:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1637,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1037:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1036:17:14"
+            },
+            "returnParameters": {
+              "id": 1642,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1641,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1643,
+                  "src": "1077:4:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 1640,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1077:4:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1076:6:14"
+            },
+            "scope": 1757,
+            "src": "1013:70:14",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1644,
+              "nodeType": "StructuredDocumentation",
+              "src": "1089:111:14",
+              "text": "@notice 充值\n @param token 要充值的代币 token\n @param amount 要充值的代币金额"
+            },
+            "functionSelector": "03fde255",
+            "id": 1651,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "deposit",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1649,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1646,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1651,
+                  "src": "1222:13:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1645,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1222:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1648,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1651,
+                  "src": "1237:14:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 1647,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1237:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1221:31:14"
+            },
+            "returnParameters": {
+              "id": 1650,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1261:0:14"
+            },
+            "scope": 1757,
+            "src": "1205:57:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1652,
+              "nodeType": "StructuredDocumentation",
+              "src": "1268:151:14",
+              "text": "@notice 提现\n @param token 要提现的代币 token\n @param to 提现的目标地址\n @param amount 要提现的代币金额"
+            },
+            "functionSelector": "274766f0",
+            "id": 1661,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1659,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1654,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1661,
+                  "src": "1451:13:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1653,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1451:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1656,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1661,
+                  "src": "1474:10:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1655,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1474:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1658,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1661,
+                  "src": "1494:14:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 1657,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1494:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1441:73:14"
+            },
+            "returnParameters": {
+              "id": 1660,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1523:0:14"
+            },
+            "scope": 1757,
+            "src": "1424:100:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1662,
+              "nodeType": "StructuredDocumentation",
+              "src": "1530:126:14",
+              "text": "@notice 获取特定代币的存储数量\n @param token 查询的代币\n @return 当前代币存储的金额"
+            },
+            "functionSelector": "93423e9c",
+            "id": 1669,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAccountBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1665,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1664,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1669,
+                  "src": "1688:13:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1663,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1688:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1687:15:14"
+            },
+            "returnParameters": {
+              "id": 1668,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1667,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1669,
+                  "src": "1726:7:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1666,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1726:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1725:9:14"
+            },
+            "scope": 1757,
+            "src": "1661:74:14",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1670,
+              "nodeType": "StructuredDocumentation",
+              "src": "1741:150:14",
+              "text": "@notice 获取特定代币的所有余额，只有 owner 可以使用\n @param token  获取 token 代币\n @return 代币总的余额"
+            },
+            "functionSelector": "9347fb3d",
+            "id": 1677,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getAllBalance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1673,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1672,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1677,
+                  "src": "1919:13:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1671,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1919:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1918:15:14"
+            },
+            "returnParameters": {
+              "id": 1676,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1675,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1677,
+                  "src": "1957:7:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1674,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1957:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1956:9:14"
+            },
+            "scope": 1757,
+            "src": "1896:70:14",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1678,
+              "nodeType": "StructuredDocumentation",
+              "src": "1972:167:14",
+              "text": "@notice 将特定代币的所有余额都提现到 owner 账户，只有 owner 可以使用\n @param token token 代币\n @return 本地提币的数量"
+            },
+            "functionSelector": "fa09e630",
+            "id": 1685,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdrawAll",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1681,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1680,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1685,
+                  "src": "2165:13:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1679,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2165:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2164:15:14"
+            },
+            "returnParameters": {
+              "id": 1684,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1683,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1685,
+                  "src": "2198:7:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1682,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2198:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2197:9:14"
+            },
+            "scope": 1757,
+            "src": "2144:63:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1686,
+              "nodeType": "StructuredDocumentation",
+              "src": "2213:350:14",
+              "text": "@notice 获取多个币对的数据\n @param poolAddress uniswap pool 地址\n @param tickSapcingOffset 获取深度的偏移量，返回的结果最多是 tick spacing offset * 2 + 1 个\n @return prices 价格列表[{sqrtPriceX96, tick}]，顺序和 pool 放入的顺序相同，liquidties 的顺序是价格从低到高排序"
+            },
+            "functionSelector": "b5a8725f",
+            "id": 1697,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getPairTicks",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1692,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1689,
+                  "mutability": "mutable",
+                  "name": "poolAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1697,
+                  "src": "2599:30:14",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1687,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "2599:7:14",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 1688,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2599:9:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1691,
+                  "mutability": "mutable",
+                  "name": "tickSapcingOffset",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1697,
+                  "src": "2639:24:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  },
+                  "typeName": {
+                    "id": 1690,
+                    "name": "uint16",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2639:6:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint16",
+                      "typeString": "uint16"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2589:80:14"
+            },
+            "returnParameters": {
+              "id": 1696,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1695,
+                  "mutability": "mutable",
+                  "name": "prices",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1697,
+                  "src": "2693:29:14",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_PoolPairOuput_$1612_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1693,
+                      "name": "PoolPairOuput",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 1612,
+                      "src": "2693:13:14",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PoolPairOuput_$1612_storage_ptr",
+                        "typeString": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput"
+                      }
+                    },
+                    "id": 1694,
+                    "nodeType": "ArrayTypeName",
+                    "src": "2693:15:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_PoolPairOuput_$1612_storage_$dyn_storage_ptr",
+                      "typeString": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2692:31:14"
+            },
+            "scope": 1757,
+            "src": "2568:156:14",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 1698,
+              "nodeType": "StructuredDocumentation",
+              "src": "2730:407:14",
+              "text": "@notice 根据填入的poolAddresList，来进行套利，poolAddresList 必须是一个闭环,A -> B -> ... -> A，顺序代表了交易路径\n @param token tokenA 的合约地址\n @param poolAddressList pool 地址，必须和 tokens 匹配\n @param amount 本次需要借贷/交易的金额\n @param minProfit 最小收益金额，单位是 token list 第一个 币的单位"
+            },
+            "functionSelector": "1f4c39ff",
+            "id": 1710,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "arbitrage",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1708,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1700,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1710,
+                  "src": "3170:13:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1699,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3170:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1703,
+                  "mutability": "mutable",
+                  "name": "poolAddressList",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1710,
+                  "src": "3193:34:14",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_address_$dyn_calldata_ptr",
+                    "typeString": "address[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 1701,
+                      "name": "address",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "3193:7:14",
+                      "stateMutability": "nonpayable",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 1702,
+                    "nodeType": "ArrayTypeName",
+                    "src": "3193:9:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_address_$dyn_storage_ptr",
+                      "typeString": "address[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1705,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1710,
+                  "src": "3237:14:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 1704,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3237:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1707,
+                  "mutability": "mutable",
+                  "name": "minProfit",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1710,
+                  "src": "3261:17:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 1706,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3261:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3160:124:14"
+            },
+            "returnParameters": {
+              "id": 1709,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "3293:0:14"
+            },
+            "scope": 1757,
+            "src": "3142:152:14",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1711,
+              "nodeType": "StructuredDocumentation",
+              "src": "3300:232:14",
+              "text": "@notice 套利成功发送的事件\n @param sender 套利人地址\n @param profitToken 收益的币种合约地址\n @param amount 本次发生的起始金额\n @param profitAmount 本次收益的金额"
+            },
+            "id": 1721,
+            "name": "Arbitrage",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1720,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1713,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "sender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1721,
+                  "src": "3562:22:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1712,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3562:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1715,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "profitToken",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1721,
+                  "src": "3594:27:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1714,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3594:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1717,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1721,
+                  "src": "3631:14:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1716,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3631:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1719,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "profitAmount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1721,
+                  "src": "3655:20:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1718,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3655:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3552:129:14"
+            },
+            "src": "3537:145:14"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1722,
+              "nodeType": "StructuredDocumentation",
+              "src": "3688:89:14",
+              "text": "@notice 添加成功一个白名单事件\n @param whiteAddress 白名单地址"
+            },
+            "id": 1726,
+            "name": "AddWhiteAddress",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1725,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1724,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "whiteAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1726,
+                  "src": "3804:28:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1723,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3804:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3803:30:14"
+            },
+            "src": "3782:52:14"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1727,
+              "nodeType": "StructuredDocumentation",
+              "src": "3839:89:14",
+              "text": "@notice 添加成功一个白名单事件\n @param whiteAddress 白名单地址"
+            },
+            "id": 1731,
+            "name": "RemoveWhiteAddress",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1730,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1729,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "whiteAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1731,
+                  "src": "3958:28:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1728,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "3958:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "3957:30:14"
+            },
+            "src": "3933:55:14"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1732,
+              "nodeType": "StructuredDocumentation",
+              "src": "3993:27:14",
+              "text": "@notice amountSpecified"
+            },
+            "id": 1734,
+            "name": "ClearWhiteAddress",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1733,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "4048:2:14"
+            },
+            "src": "4025:26:14"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1735,
+              "nodeType": "StructuredDocumentation",
+              "src": "4057:59:14",
+              "text": "@notice 充值事件\n @param sender 充值的人"
+            },
+            "id": 1743,
+            "name": "Deposit",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1742,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1737,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "sender",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1743,
+                  "src": "4144:22:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1736,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4144:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1739,
+                  "indexed": true,
+                  "mutability": "mutable",
+                  "name": "token",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1743,
+                  "src": "4176:21:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1738,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4176:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1741,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1743,
+                  "src": "4207:14:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1740,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4207:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4134:93:14"
+            },
+            "src": "4121:107:14"
+          },
+          {
+            "anonymous": false,
+            "documentation": {
+              "id": 1744,
+              "nodeType": "StructuredDocumentation",
+              "src": "4234:10:14",
+              "text": "da'yin"
+            },
+            "id": 1756,
+            "name": "PrintSwap",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 1755,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1746,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "fromAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1756,
+                  "src": "4274:19:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1745,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4274:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1748,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "toAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1756,
+                  "src": "4303:17:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1747,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4303:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1750,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "poolAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1756,
+                  "src": "4330:19:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 1749,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4330:7:14",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1752,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1756,
+                  "src": "4359:14:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 1751,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4359:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 1754,
+                  "indexed": false,
+                  "mutability": "mutable",
+                  "name": "sqrtPriceLimitX96",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1756,
+                  "src": "4383:25:14",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 1753,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "4383:7:14",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "4264:150:14"
+            },
+            "src": "4249:166:14"
+          }
+        ],
+        "scope": 1758,
+        "src": "78:4339:14"
+      }
+    ],
+    "src": "32:4386:14"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/flash/ITriangularArbitrageOnUniswapV3.sol",
+      "exportedSymbols": {
+        "ITriangularArbitrageOnUniswapV3": [
+          1757
+        ]
+      },
+      "license": "MIT"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.7",
+            ".4"
+          ]
+        },
+        "id": 1601,
+        "name": "PragmaDirective",
+        "src": "32:24:14"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "abicoder",
+            "v2"
+          ]
+        },
+        "id": 1602,
+        "name": "PragmaDirective",
+        "src": "57:19:14"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            1757
+          ],
+          "name": "ITriangularArbitrageOnUniswapV3",
+          "scope": 1758
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "ITriangularArbitrageOnUniswapV3.PoolPairOuput",
+              "name": "PoolPairOuput",
+              "scope": 1757,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "sqrtPriceX96",
+                  "scope": 1612,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint160",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint160",
+                      "type": "uint160"
+                    },
+                    "id": 1603,
+                    "name": "ElementaryTypeName",
+                    "src": "195:7:14"
+                  }
+                ],
+                "id": 1604,
+                "name": "VariableDeclaration",
+                "src": "195:20:14"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "tick",
+                  "scope": 1612,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "int24",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "int24",
+                      "type": "int24"
+                    },
+                    "id": 1605,
+                    "name": "ElementaryTypeName",
+                    "src": "225:5:14"
+                  }
+                ],
+                "id": 1606,
+                "name": "VariableDeclaration",
+                "src": "225:10:14"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "tickSpace",
+                  "scope": 1612,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "int24",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "int24",
+                      "type": "int24"
+                    },
+                    "id": 1607,
+                    "name": "ElementaryTypeName",
+                    "src": "245:5:14"
+                  }
+                ],
+                "id": 1608,
+                "name": "VariableDeclaration",
+                "src": "245:15:14"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "liquidties",
+                  "scope": 1612,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick[]",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "type": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "PopulatedTick",
+                          "referencedDeclaration": 1619,
+                          "type": "struct ITriangularArbitrageOnUniswapV3.PopulatedTick"
+                        },
+                        "id": 1609,
+                        "name": "UserDefinedTypeName",
+                        "src": "270:13:14"
+                      }
+                    ],
+                    "id": 1610,
+                    "name": "ArrayTypeName",
+                    "src": "270:15:14"
+                  }
+                ],
+                "id": 1611,
+                "name": "VariableDeclaration",
+                "src": "270:26:14"
+              }
+            ],
+            "id": 1612,
+            "name": "StructDefinition",
+            "src": "164:139:14"
+          },
+          {
+            "attributes": {
+              "canonicalName": "ITriangularArbitrageOnUniswapV3.PopulatedTick",
+              "name": "PopulatedTick",
+              "scope": 1757,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "tick",
+                  "scope": 1619,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "int24",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "int24",
+                      "type": "int24"
+                    },
+                    "id": 1613,
+                    "name": "ElementaryTypeName",
+                    "src": "373:5:14"
+                  }
+                ],
+                "id": 1614,
+                "name": "VariableDeclaration",
+                "src": "373:10:14"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "liquidityNet",
+                  "scope": 1619,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "int128",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "int128",
+                      "type": "int128"
+                    },
+                    "id": 1615,
+                    "name": "ElementaryTypeName",
+                    "src": "393:6:14"
+                  }
+                ],
+                "id": 1616,
+                "name": "VariableDeclaration",
+                "src": "393:19:14"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "liquidityGross",
+                  "scope": 1619,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint128",
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint128",
+                      "type": "uint128"
+                    },
+                    "id": 1617,
+                    "name": "ElementaryTypeName",
+                    "src": "422:7:14"
+                  }
+                ],
+                "id": 1618,
+                "name": "VariableDeclaration",
+                "src": "422:22:14"
+              }
+            ],
+            "id": 1619,
+            "name": "StructDefinition",
+            "src": "342:109:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "f65ad55c",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "addWhiteAddress",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 添加一个白名单地址\n @param whiteAddress 需要添加的白名单地址"
+                },
+                "id": 1620,
+                "name": "StructuredDocumentation",
+                "src": "457:98:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "whiteAddress",
+                      "scope": 1625,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1621,
+                        "name": "ElementaryTypeName",
+                        "src": "585:7:14"
+                      }
+                    ],
+                    "id": 1622,
+                    "name": "VariableDeclaration",
+                    "src": "585:20:14"
+                  }
+                ],
+                "id": 1623,
+                "name": "ParameterList",
+                "src": "584:22:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1624,
+                "name": "ParameterList",
+                "src": "615:0:14"
+              }
+            ],
+            "id": 1625,
+            "name": "FunctionDefinition",
+            "src": "560:56:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "2e135c54",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "removeWhiteAddress",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 移除一个白名单\n @param whiteAddress 需要删除的地址"
+                },
+                "id": 1626,
+                "name": "StructuredDocumentation",
+                "src": "622:83:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "whiteAddress",
+                      "scope": 1631,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1627,
+                        "name": "ElementaryTypeName",
+                        "src": "738:7:14"
+                      }
+                    ],
+                    "id": 1628,
+                    "name": "VariableDeclaration",
+                    "src": "738:20:14"
+                  }
+                ],
+                "id": 1629,
+                "name": "ParameterList",
+                "src": "737:22:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1630,
+                "name": "ParameterList",
+                "src": "768:0:14"
+              }
+            ],
+            "id": 1631,
+            "name": "FunctionDefinition",
+            "src": "710:59:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "72406377",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "clearWhiteAddress",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 清空白名单"
+                },
+                "id": 1632,
+                "name": "StructuredDocumentation",
+                "src": "775:27:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1633,
+                "name": "ParameterList",
+                "src": "833:2:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1634,
+                "name": "ParameterList",
+                "src": "844:0:14"
+              }
+            ],
+            "id": 1635,
+            "name": "FunctionDefinition",
+            "src": "807:38:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "333dc856",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "isWhiteAddress",
+              "scope": 1757,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 获取当前白名单地址列表\n @param checker 需要检查的地址\n @return 结果，true 是白名单，false 不是白名单"
+                },
+                "id": 1636,
+                "name": "StructuredDocumentation",
+                "src": "851:157:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "checker",
+                      "scope": 1643,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1637,
+                        "name": "ElementaryTypeName",
+                        "src": "1037:7:14"
+                      }
+                    ],
+                    "id": 1638,
+                    "name": "VariableDeclaration",
+                    "src": "1037:15:14"
+                  }
+                ],
+                "id": 1639,
+                "name": "ParameterList",
+                "src": "1036:17:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 1643,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "bool",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bool",
+                          "type": "bool"
+                        },
+                        "id": 1640,
+                        "name": "ElementaryTypeName",
+                        "src": "1077:4:14"
+                      }
+                    ],
+                    "id": 1641,
+                    "name": "VariableDeclaration",
+                    "src": "1077:4:14"
+                  }
+                ],
+                "id": 1642,
+                "name": "ParameterList",
+                "src": "1076:6:14"
+              }
+            ],
+            "id": 1643,
+            "name": "FunctionDefinition",
+            "src": "1013:70:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "03fde255",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "deposit",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 充值\n @param token 要充值的代币 token\n @param amount 要充值的代币金额"
+                },
+                "id": 1644,
+                "name": "StructuredDocumentation",
+                "src": "1089:111:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1651,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1645,
+                        "name": "ElementaryTypeName",
+                        "src": "1222:7:14"
+                      }
+                    ],
+                    "id": 1646,
+                    "name": "VariableDeclaration",
+                    "src": "1222:13:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "scope": 1651,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint160",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint160",
+                          "type": "uint160"
+                        },
+                        "id": 1647,
+                        "name": "ElementaryTypeName",
+                        "src": "1237:7:14"
+                      }
+                    ],
+                    "id": 1648,
+                    "name": "VariableDeclaration",
+                    "src": "1237:14:14"
+                  }
+                ],
+                "id": 1649,
+                "name": "ParameterList",
+                "src": "1221:31:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1650,
+                "name": "ParameterList",
+                "src": "1261:0:14"
+              }
+            ],
+            "id": 1651,
+            "name": "FunctionDefinition",
+            "src": "1205:57:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "274766f0",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "withdraw",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 提现\n @param token 要提现的代币 token\n @param to 提现的目标地址\n @param amount 要提现的代币金额"
+                },
+                "id": 1652,
+                "name": "StructuredDocumentation",
+                "src": "1268:151:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1661,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1653,
+                        "name": "ElementaryTypeName",
+                        "src": "1451:7:14"
+                      }
+                    ],
+                    "id": 1654,
+                    "name": "VariableDeclaration",
+                    "src": "1451:13:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "to",
+                      "scope": 1661,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1655,
+                        "name": "ElementaryTypeName",
+                        "src": "1474:7:14"
+                      }
+                    ],
+                    "id": 1656,
+                    "name": "VariableDeclaration",
+                    "src": "1474:10:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "scope": 1661,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint160",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint160",
+                          "type": "uint160"
+                        },
+                        "id": 1657,
+                        "name": "ElementaryTypeName",
+                        "src": "1494:7:14"
+                      }
+                    ],
+                    "id": 1658,
+                    "name": "VariableDeclaration",
+                    "src": "1494:14:14"
+                  }
+                ],
+                "id": 1659,
+                "name": "ParameterList",
+                "src": "1441:73:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1660,
+                "name": "ParameterList",
+                "src": "1523:0:14"
+              }
+            ],
+            "id": 1661,
+            "name": "FunctionDefinition",
+            "src": "1424:100:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "93423e9c",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getAccountBalance",
+              "scope": 1757,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 获取特定代币的存储数量\n @param token 查询的代币\n @return 当前代币存储的金额"
+                },
+                "id": 1662,
+                "name": "StructuredDocumentation",
+                "src": "1530:126:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1669,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1663,
+                        "name": "ElementaryTypeName",
+                        "src": "1688:7:14"
+                      }
+                    ],
+                    "id": 1664,
+                    "name": "VariableDeclaration",
+                    "src": "1688:13:14"
+                  }
+                ],
+                "id": 1665,
+                "name": "ParameterList",
+                "src": "1687:15:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 1669,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1666,
+                        "name": "ElementaryTypeName",
+                        "src": "1726:7:14"
+                      }
+                    ],
+                    "id": 1667,
+                    "name": "VariableDeclaration",
+                    "src": "1726:7:14"
+                  }
+                ],
+                "id": 1668,
+                "name": "ParameterList",
+                "src": "1725:9:14"
+              }
+            ],
+            "id": 1669,
+            "name": "FunctionDefinition",
+            "src": "1661:74:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "9347fb3d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getAllBalance",
+              "scope": 1757,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 获取特定代币的所有余额，只有 owner 可以使用\n @param token  获取 token 代币\n @return 代币总的余额"
+                },
+                "id": 1670,
+                "name": "StructuredDocumentation",
+                "src": "1741:150:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1677,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1671,
+                        "name": "ElementaryTypeName",
+                        "src": "1919:7:14"
+                      }
+                    ],
+                    "id": 1672,
+                    "name": "VariableDeclaration",
+                    "src": "1919:13:14"
+                  }
+                ],
+                "id": 1673,
+                "name": "ParameterList",
+                "src": "1918:15:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 1677,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1674,
+                        "name": "ElementaryTypeName",
+                        "src": "1957:7:14"
+                      }
+                    ],
+                    "id": 1675,
+                    "name": "VariableDeclaration",
+                    "src": "1957:7:14"
+                  }
+                ],
+                "id": 1676,
+                "name": "ParameterList",
+                "src": "1956:9:14"
+              }
+            ],
+            "id": 1677,
+            "name": "FunctionDefinition",
+            "src": "1896:70:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "fa09e630",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "withdrawAll",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 将特定代币的所有余额都提现到 owner 账户，只有 owner 可以使用\n @param token token 代币\n @return 本地提币的数量"
+                },
+                "id": 1678,
+                "name": "StructuredDocumentation",
+                "src": "1972:167:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1685,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1679,
+                        "name": "ElementaryTypeName",
+                        "src": "2165:7:14"
+                      }
+                    ],
+                    "id": 1680,
+                    "name": "VariableDeclaration",
+                    "src": "2165:13:14"
+                  }
+                ],
+                "id": 1681,
+                "name": "ParameterList",
+                "src": "2164:15:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 1685,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1682,
+                        "name": "ElementaryTypeName",
+                        "src": "2198:7:14"
+                      }
+                    ],
+                    "id": 1683,
+                    "name": "VariableDeclaration",
+                    "src": "2198:7:14"
+                  }
+                ],
+                "id": 1684,
+                "name": "ParameterList",
+                "src": "2197:9:14"
+              }
+            ],
+            "id": 1685,
+            "name": "FunctionDefinition",
+            "src": "2144:63:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "b5a8725f",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getPairTicks",
+              "scope": 1757,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 获取多个币对的数据\n @param poolAddress uniswap pool 地址\n @param tickSapcingOffset 获取深度的偏移量，返回的结果最多是 tick spacing offset * 2 + 1 个\n @return prices 价格列表[{sqrtPriceX96, tick}]，顺序和 pool 放入的顺序相同，liquidties 的顺序是价格从低到高排序"
+                },
+                "id": 1686,
+                "name": "StructuredDocumentation",
+                "src": "2213:350:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "poolAddress",
+                      "scope": 1697,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "address[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 1687,
+                            "name": "ElementaryTypeName",
+                            "src": "2599:7:14"
+                          }
+                        ],
+                        "id": 1688,
+                        "name": "ArrayTypeName",
+                        "src": "2599:9:14"
+                      }
+                    ],
+                    "id": 1689,
+                    "name": "VariableDeclaration",
+                    "src": "2599:30:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tickSapcingOffset",
+                      "scope": 1697,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint16",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint16",
+                          "type": "uint16"
+                        },
+                        "id": 1690,
+                        "name": "ElementaryTypeName",
+                        "src": "2639:6:14"
+                      }
+                    ],
+                    "id": 1691,
+                    "name": "VariableDeclaration",
+                    "src": "2639:24:14"
+                  }
+                ],
+                "id": 1692,
+                "name": "ParameterList",
+                "src": "2589:80:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "prices",
+                      "scope": 1697,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "PoolPairOuput",
+                              "referencedDeclaration": 1612,
+                              "type": "struct ITriangularArbitrageOnUniswapV3.PoolPairOuput"
+                            },
+                            "id": 1693,
+                            "name": "UserDefinedTypeName",
+                            "src": "2693:13:14"
+                          }
+                        ],
+                        "id": 1694,
+                        "name": "ArrayTypeName",
+                        "src": "2693:15:14"
+                      }
+                    ],
+                    "id": 1695,
+                    "name": "VariableDeclaration",
+                    "src": "2693:29:14"
+                  }
+                ],
+                "id": 1696,
+                "name": "ParameterList",
+                "src": "2692:31:14"
+              }
+            ],
+            "id": 1697,
+            "name": "FunctionDefinition",
+            "src": "2568:156:14"
+          },
+          {
+            "attributes": {
+              "functionSelector": "1f4c39ff",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "arbitrage",
+              "scope": 1757,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 根据填入的poolAddresList，来进行套利，poolAddresList 必须是一个闭环,A -> B -> ... -> A，顺序代表了交易路径\n @param token tokenA 的合约地址\n @param poolAddressList pool 地址，必须和 tokens 匹配\n @param amount 本次需要借贷/交易的金额\n @param minProfit 最小收益金额，单位是 token list 第一个 币的单位"
+                },
+                "id": 1698,
+                "name": "StructuredDocumentation",
+                "src": "2730:407:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1710,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1699,
+                        "name": "ElementaryTypeName",
+                        "src": "3170:7:14"
+                      }
+                    ],
+                    "id": 1700,
+                    "name": "VariableDeclaration",
+                    "src": "3170:13:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "poolAddressList",
+                      "scope": 1710,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "address[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "address[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "address",
+                              "stateMutability": "nonpayable",
+                              "type": "address"
+                            },
+                            "id": 1701,
+                            "name": "ElementaryTypeName",
+                            "src": "3193:7:14"
+                          }
+                        ],
+                        "id": 1702,
+                        "name": "ArrayTypeName",
+                        "src": "3193:9:14"
+                      }
+                    ],
+                    "id": 1703,
+                    "name": "VariableDeclaration",
+                    "src": "3193:34:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "scope": 1710,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint160",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint160",
+                          "type": "uint160"
+                        },
+                        "id": 1704,
+                        "name": "ElementaryTypeName",
+                        "src": "3237:7:14"
+                      }
+                    ],
+                    "id": 1705,
+                    "name": "VariableDeclaration",
+                    "src": "3237:14:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "minProfit",
+                      "scope": 1710,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint160",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint160",
+                          "type": "uint160"
+                        },
+                        "id": 1706,
+                        "name": "ElementaryTypeName",
+                        "src": "3261:7:14"
+                      }
+                    ],
+                    "id": 1707,
+                    "name": "VariableDeclaration",
+                    "src": "3261:17:14"
+                  }
+                ],
+                "id": 1708,
+                "name": "ParameterList",
+                "src": "3160:124:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1709,
+                "name": "ParameterList",
+                "src": "3293:0:14"
+              }
+            ],
+            "id": 1710,
+            "name": "FunctionDefinition",
+            "src": "3142:152:14"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "Arbitrage"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 套利成功发送的事件\n @param sender 套利人地址\n @param profitToken 收益的币种合约地址\n @param amount 本次发生的起始金额\n @param profitAmount 本次收益的金额"
+                },
+                "id": 1711,
+                "name": "StructuredDocumentation",
+                "src": "3300:232:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "sender",
+                      "scope": 1721,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1712,
+                        "name": "ElementaryTypeName",
+                        "src": "3562:7:14"
+                      }
+                    ],
+                    "id": 1713,
+                    "name": "VariableDeclaration",
+                    "src": "3562:22:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "profitToken",
+                      "scope": 1721,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1714,
+                        "name": "ElementaryTypeName",
+                        "src": "3594:7:14"
+                      }
+                    ],
+                    "id": 1715,
+                    "name": "VariableDeclaration",
+                    "src": "3594:27:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "scope": 1721,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1716,
+                        "name": "ElementaryTypeName",
+                        "src": "3631:7:14"
+                      }
+                    ],
+                    "id": 1717,
+                    "name": "VariableDeclaration",
+                    "src": "3631:14:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "profitAmount",
+                      "scope": 1721,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1718,
+                        "name": "ElementaryTypeName",
+                        "src": "3655:7:14"
+                      }
+                    ],
+                    "id": 1719,
+                    "name": "VariableDeclaration",
+                    "src": "3655:20:14"
+                  }
+                ],
+                "id": 1720,
+                "name": "ParameterList",
+                "src": "3552:129:14"
+              }
+            ],
+            "id": 1721,
+            "name": "EventDefinition",
+            "src": "3537:145:14"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "AddWhiteAddress"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 添加成功一个白名单事件\n @param whiteAddress 白名单地址"
+                },
+                "id": 1722,
+                "name": "StructuredDocumentation",
+                "src": "3688:89:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "whiteAddress",
+                      "scope": 1726,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1723,
+                        "name": "ElementaryTypeName",
+                        "src": "3804:7:14"
+                      }
+                    ],
+                    "id": 1724,
+                    "name": "VariableDeclaration",
+                    "src": "3804:28:14"
+                  }
+                ],
+                "id": 1725,
+                "name": "ParameterList",
+                "src": "3803:30:14"
+              }
+            ],
+            "id": 1726,
+            "name": "EventDefinition",
+            "src": "3782:52:14"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "RemoveWhiteAddress"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 添加成功一个白名单事件\n @param whiteAddress 白名单地址"
+                },
+                "id": 1727,
+                "name": "StructuredDocumentation",
+                "src": "3839:89:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "whiteAddress",
+                      "scope": 1731,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1728,
+                        "name": "ElementaryTypeName",
+                        "src": "3958:7:14"
+                      }
+                    ],
+                    "id": 1729,
+                    "name": "VariableDeclaration",
+                    "src": "3958:28:14"
+                  }
+                ],
+                "id": 1730,
+                "name": "ParameterList",
+                "src": "3957:30:14"
+              }
+            ],
+            "id": 1731,
+            "name": "EventDefinition",
+            "src": "3933:55:14"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "ClearWhiteAddress"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice amountSpecified"
+                },
+                "id": 1732,
+                "name": "StructuredDocumentation",
+                "src": "3993:27:14"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1733,
+                "name": "ParameterList",
+                "src": "4048:2:14"
+              }
+            ],
+            "id": 1734,
+            "name": "EventDefinition",
+            "src": "4025:26:14"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "Deposit"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice 充值事件\n @param sender 充值的人"
+                },
+                "id": 1735,
+                "name": "StructuredDocumentation",
+                "src": "4057:59:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "sender",
+                      "scope": 1743,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1736,
+                        "name": "ElementaryTypeName",
+                        "src": "4144:7:14"
+                      }
+                    ],
+                    "id": 1737,
+                    "name": "VariableDeclaration",
+                    "src": "4144:22:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "mutability": "mutable",
+                      "name": "token",
+                      "scope": 1743,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1738,
+                        "name": "ElementaryTypeName",
+                        "src": "4176:7:14"
+                      }
+                    ],
+                    "id": 1739,
+                    "name": "VariableDeclaration",
+                    "src": "4176:21:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "scope": 1743,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1740,
+                        "name": "ElementaryTypeName",
+                        "src": "4207:7:14"
+                      }
+                    ],
+                    "id": 1741,
+                    "name": "VariableDeclaration",
+                    "src": "4207:14:14"
+                  }
+                ],
+                "id": 1742,
+                "name": "ParameterList",
+                "src": "4134:93:14"
+              }
+            ],
+            "id": 1743,
+            "name": "EventDefinition",
+            "src": "4121:107:14"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "name": "PrintSwap"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "da'yin"
+                },
+                "id": 1744,
+                "name": "StructuredDocumentation",
+                "src": "4234:10:14"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "fromAddress",
+                      "scope": 1756,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1745,
+                        "name": "ElementaryTypeName",
+                        "src": "4274:7:14"
+                      }
+                    ],
+                    "id": 1746,
+                    "name": "VariableDeclaration",
+                    "src": "4274:19:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "toAddress",
+                      "scope": 1756,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1747,
+                        "name": "ElementaryTypeName",
+                        "src": "4303:7:14"
+                      }
+                    ],
+                    "id": 1748,
+                    "name": "VariableDeclaration",
+                    "src": "4303:17:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "poolAddress",
+                      "scope": 1756,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 1749,
+                        "name": "ElementaryTypeName",
+                        "src": "4330:7:14"
+                      }
+                    ],
+                    "id": 1750,
+                    "name": "VariableDeclaration",
+                    "src": "4330:19:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "amount",
+                      "scope": 1756,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 1751,
+                        "name": "ElementaryTypeName",
+                        "src": "4359:7:14"
+                      }
+                    ],
+                    "id": 1752,
+                    "name": "VariableDeclaration",
+                    "src": "4359:14:14"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "mutability": "mutable",
+                      "name": "sqrtPriceLimitX96",
+                      "scope": 1756,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint160",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint160",
+                          "type": "uint160"
+                        },
+                        "id": 1753,
+                        "name": "ElementaryTypeName",
+                        "src": "4383:7:14"
+                      }
+                    ],
+                    "id": 1754,
+                    "name": "VariableDeclaration",
+                    "src": "4383:25:14"
+                  }
+                ],
+                "id": 1755,
+                "name": "ParameterList",
+                "src": "4264:150:14"
+              }
+            ],
+            "id": 1756,
+            "name": "EventDefinition",
+            "src": "4249:166:14"
+          }
+        ],
+        "id": 1757,
+        "name": "ContractDefinition",
+        "src": "78:4339:14"
+      }
+    ],
+    "id": 1758,
+    "name": "SourceUnit",
+    "src": "32:4386:14"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-26T05:07:14.102Z",
+  "devdoc": {
+    "events": {
+      "AddWhiteAddress(address)": {
+        "params": {
+          "whiteAddress": "白名单地址"
+        }
+      },
+      "Arbitrage(address,address,uint256,uint256)": {
+        "params": {
+          "amount": "本次发生的起始金额",
+          "profitAmount": "本次收益的金额",
+          "profitToken": "收益的币种合约地址",
+          "sender": "套利人地址"
+        }
+      },
+      "Deposit(address,address,uint256)": {
+        "params": {
+          "sender": "充值的人"
+        }
+      },
+      "RemoveWhiteAddress(address)": {
+        "params": {
+          "whiteAddress": "白名单地址"
+        }
+      }
+    },
+    "kind": "dev",
+    "methods": {
+      "addWhiteAddress(address)": {
+        "params": {
+          "whiteAddress": "需要添加的白名单地址"
+        }
+      },
+      "arbitrage(address,address[],uint160,uint160)": {
+        "params": {
+          "amount": "本次需要借贷/交易的金额",
+          "minProfit": "最小收益金额，单位是 token list 第一个 币的单位",
+          "poolAddressList": "pool 地址，必须和 tokens 匹配",
+          "token": "tokenA 的合约地址"
+        }
+      },
+      "deposit(address,uint160)": {
+        "params": {
+          "amount": "要充值的代币金额",
+          "token": "要充值的代币 token"
+        }
+      },
+      "getAccountBalance(address)": {
+        "params": {
+          "token": "查询的代币"
+        },
+        "returns": {
+          "_0": "当前代币存储的金额"
+        }
+      },
+      "getAllBalance(address)": {
+        "params": {
+          "token": "获取 token 代币"
+        },
+        "returns": {
+          "_0": "代币总的余额"
+        }
+      },
+      "getPairTicks(address[],uint16)": {
+        "params": {
+          "poolAddress": "uniswap pool 地址",
+          "tickSapcingOffset": "获取深度的偏移量，返回的结果最多是 tick spacing offset * 2 + 1 个"
+        },
+        "returns": {
+          "prices": "价格列表[{sqrtPriceX96, tick}]，顺序和 pool 放入的顺序相同，liquidties 的顺序是价格从低到高排序"
+        }
+      },
+      "isWhiteAddress(address)": {
+        "params": {
+          "checker": "需要检查的地址"
+        },
+        "returns": {
+          "_0": "结果，true 是白名单，false 不是白名单"
+        }
+      },
+      "removeWhiteAddress(address)": {
+        "params": {
+          "whiteAddress": "需要删除的地址"
+        }
+      },
+      "withdraw(address,address,uint160)": {
+        "params": {
+          "amount": "要提现的代币金额",
+          "to": "提现的目标地址",
+          "token": "要提现的代币 token"
+        }
+      },
+      "withdrawAll(address)": {
+        "params": {
+          "token": "token 代币"
+        },
+        "returns": {
+          "_0": "本地提币的数量"
+        }
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "events": {
+      "AddWhiteAddress(address)": {
+        "notice": "添加成功一个白名单事件"
+      },
+      "Arbitrage(address,address,uint256,uint256)": {
+        "notice": "套利成功发送的事件"
+      },
+      "ClearWhiteAddress()": {
+        "notice": "amountSpecified"
+      },
+      "Deposit(address,address,uint256)": {
+        "notice": "充值事件"
+      },
+      "PrintSwap(address,address,address,uint256,uint160)": {
+        "notice": "da'yin"
+      },
+      "RemoveWhiteAddress(address)": {
+        "notice": "添加成功一个白名单事件"
+      }
+    },
+    "kind": "user",
+    "methods": {
+      "addWhiteAddress(address)": {
+        "notice": "添加一个白名单地址"
+      },
+      "arbitrage(address,address[],uint160,uint160)": {
+        "notice": "根据填入的poolAddresList，来进行套利，poolAddresList 必须是一个闭环,A -> B -> ... -> A，顺序代表了交易路径"
+      },
+      "clearWhiteAddress()": {
+        "notice": "清空白名单"
+      },
+      "deposit(address,uint160)": {
+        "notice": "充值"
+      },
+      "getAccountBalance(address)": {
+        "notice": "获取特定代币的存储数量"
+      },
+      "getAllBalance(address)": {
+        "notice": "获取特定代币的所有余额，只有 owner 可以使用"
+      },
+      "getPairTicks(address[],uint16)": {
+        "notice": "获取多个币对的数据"
+      },
+      "isWhiteAddress(address)": {
+        "notice": "获取当前白名单地址列表"
+      },
+      "removeWhiteAddress(address)": {
+        "notice": "移除一个白名单"
+      },
+      "withdraw(address,address,uint160)": {
+        "notice": "提现"
+      },
+      "withdrawAll(address)": {
+        "notice": "将特定代币的所有余额都提现到 owner 账户，只有 owner 可以使用"
+      }
+    },
+    "version": 1
+  }
+}

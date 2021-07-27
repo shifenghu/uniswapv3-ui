@@ -1,0 +1,501 @@
+{
+  "contractName": "INonfungibleTokenPositionDescriptor",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract INonfungiblePositionManager",
+          "name": "positionManager",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "tokenURI",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract INonfungiblePositionManager\",\"name\":\"positionManager\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"tokenId\",\"type\":\"uint256\"}],\"name\":\"tokenURI\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"tokenURI(address,uint256)\":{\"details\":\"Note this URI may be a data: URI with the JSON contents directly inlined\",\"params\":{\"positionManager\":\"The position manager for which to describe the token\",\"tokenId\":\"The ID of the token for which to produce a description, which may not be valid\"},\"returns\":{\"_0\":\"The URI of the ERC721-compliant metadata\"}}},\"title\":\"Describes position NFT tokens via URI\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"tokenURI(address,uint256)\":{\"notice\":\"Produces the URI describing a particular token ID for a position manager\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/nonfungiable/INonfungibleTokenPositionDescriptor.sol\":\"INonfungibleTokenPositionDescriptor\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/introspection/IERC165.sol\":{\"keccak256\":\"0xd2f30fad5b24c4120f96dbac83aacdb7993ee610a9092bc23c44463da292bf8d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://e3d4e72409e392c7694b6405a0136cf073d8da016df33ef8f9ad195f724ebfea\",\"dweb:/ipfs/QmPGcddKq6CgsiKnxUUif2q76wRqP3dmdQ6bKuHCLmb8Wa\"]},\"@openzeppelin/contracts/token/ERC721/IERC721.sol\":{\"keccak256\":\"0xb11597841d47f7a773bca63ca323c76f804cb5d944788de0327db5526319dc82\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://930d2da1934886a1098753be4173dd89c45ca0b306a1930accd37e00b1af4aaf\",\"dweb:/ipfs/QmVSXnvEV41d43k8cfpANHoTYMKgBDBL8iCbxkLfEtQZBe\"]},\"@openzeppelin/contracts/token/ERC721/IERC721Enumerable.sol\":{\"keccak256\":\"0x2789dfea2d73182683d637db5729201f6730dae6113030a94c828f8688f38f2f\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://36374eaa68c0737bf7e1ae13d55327b4868fb0825e971ee729f4b8d355ededb4\",\"dweb:/ipfs/QmYN9yuzz4P5SumiT6rgYgTEY8MhnPQapMwx2LHxRKju7r\"]},\"@openzeppelin/contracts/token/ERC721/IERC721Metadata.sol\":{\"keccak256\":\"0xc82c7d1d732081d9bd23f1555ebdf8f3bc1738bc42c2bfc4b9aa7564d9fa3573\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://5cb07e4ff3352161510a0d1536fe93f3c62526358e073a8bab2a8abbb27d0da1\",\"dweb:/ipfs/QmX7K1JjnWKT1JzZT92Qx5zNJQYbssE533TLFHP88hj2fb\"]},\"project:/contracts/interfaces/IERC721Permit.sol\":{\"keccak256\":\"0xbe7ef26ad4b06763a3e155ec6d5261b1f4349ea054b8a1e8759cdedd2940feea\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://2e2a3f5b6b4642e9c2cc89c46f993423db32b4f03603758c8062e8b170b99a36\",\"dweb:/ipfs/Qmd1hNNREEhkED6b1YEMq2jVDWacsXP89vwcm3gUywed6K\"]},\"project:/contracts/interfaces/IPeripheryImmutableState.sol\":{\"keccak256\":\"0x7affcfeb5127c0925a71d6a65345e117c33537523aeca7bc98085ead8452519d\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://e16b291294210e71cb0f20cd0afe62ae2dc6878d627f5ccc19c4dc9cd80aec3f\",\"dweb:/ipfs/QmQGitSyBr26nour81BZmpmDMyJpvZRqHQZvnCD1Acb127\"]},\"project:/contracts/interfaces/IPeripheryPayments.sol\":{\"keccak256\":\"0xb547e10f1e69bed03621a62b73a503e260643066c6b4054867a4d1fef47eb274\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://f9a90f58f5fd5fb42f7811f4094113b532f307b14a73764c91f977590747f407\",\"dweb:/ipfs/QmSeNH2mfiDMKf3Q6V2sqtNxx1s72JNuA1VVxRM9HoMqYp\"]},\"project:/contracts/interfaces/IPoolInitializer.sol\":{\"keccak256\":\"0x9d7695e8d94c22cc5fcced602017aabb988de89981ea7bee29ea629d5328a862\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://61b50933026ee1017db2a6273af8cedc3238c95dca58880db0918dbdbb2f064f\",\"dweb:/ipfs/QmUebR26pqG25d18aBELKz8aFFKkmHa8PxntzXTA7o9Ldu\"]},\"project:/contracts/interfaces/nonfungiable/INonfungiblePositionManager.sol\":{\"keccak256\":\"0x511fcafd6289e2c5d61aeb862a635b837641a0a1e3cab9da085a76c22e7e01f2\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://c12f09cde4b8c72bfd1f1774f0721b83dc28b592c61bc4b0ce47b074ebff5b92\",\"dweb:/ipfs/QmZ9bc67hrS7TDNBbU5DPPUmYwwF4LvPZJWS5Zgwqoj3er\"]},\"project:/contracts/interfaces/nonfungiable/INonfungibleTokenPositionDescriptor.sol\":{\"keccak256\":\"0xbd38c547a9922f146b5d2d4c67bef2e05c38962c485adc6dc51b5f524f04e3c6\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://86b44688ad9ea1e521aa44acdfec4a52de7013b93faeffc3a950648401190be1\",\"dweb:/ipfs/QmRN26kHnipgVy2G479W9h8wSy28wkTsWrFLg6QafZwEr9\"]},\"project:/contracts/libraries/PoolAddress.sol\":{\"keccak256\":\"0x12db7ea1b618eeec9523bef9cae67db503adc1531a5a49a454b27d0bb6fba0f3\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://3389a0f14aa2643eeb7cc0c14c827bd0d9c826d6e7fa4582d705761f2e1f8f1f\",\"dweb:/ipfs/QmZu8oSDBHN3t5t9cT9UheTMKZBTZVT6XPWPYSTAozrZjM\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-2.0-or-later\npragma solidity >=0.5.0;\n\nimport './INonfungiblePositionManager.sol';\n\n/// @title Describes position NFT tokens via URI\ninterface INonfungibleTokenPositionDescriptor {\n    /// @notice Produces the URI describing a particular token ID for a position manager\n    /// @dev Note this URI may be a data: URI with the JSON contents directly inlined\n    /// @param positionManager The position manager for which to describe the token\n    /// @param tokenId The ID of the token for which to produce a description, which may not be valid\n    /// @return The URI of the ERC721-compliant metadata\n    function tokenURI(INonfungiblePositionManager positionManager, uint256 tokenId)\n        external\n        view\n        returns (string memory);\n}\n",
+  "sourcePath": "/Users/shifenghu/Documents/work/study/blockchain/uniswap/v3-ui/uniswap-v3/contracts/interfaces/nonfungiable/INonfungibleTokenPositionDescriptor.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/nonfungiable/INonfungibleTokenPositionDescriptor.sol",
+    "exportedSymbols": {
+      "IERC165": [
+        104
+      ],
+      "IERC721": [
+        1776
+      ],
+      "IERC721Enumerable": [
+        1807
+      ],
+      "IERC721Metadata": [
+        1834
+      ],
+      "IERC721Permit": [
+        7930
+      ],
+      "INonfungiblePositionManager": [
+        8964
+      ],
+      "INonfungibleTokenPositionDescriptor": [
+        8979
+      ],
+      "IPeripheryImmutableState": [
+        7961
+      ],
+      "IPeripheryPayments": [
+        7987
+      ],
+      "IPoolInitializer": [
+        8039
+      ],
+      "PoolAddress": [
+        14550
+      ]
+    },
+    "id": 8980,
+    "license": "GPL-2.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 8966,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "45:24:54"
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/nonfungiable/INonfungiblePositionManager.sol",
+        "file": "./INonfungiblePositionManager.sol",
+        "id": 8967,
+        "nodeType": "ImportDirective",
+        "scope": 8980,
+        "sourceUnit": 8965,
+        "src": "71:43:54",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 8968,
+          "nodeType": "StructuredDocumentation",
+          "src": "116:49:54",
+          "text": "@title Describes position NFT tokens via URI"
+        },
+        "fullyImplemented": false,
+        "id": 8979,
+        "linearizedBaseContracts": [
+          8979
+        ],
+        "name": "INonfungibleTokenPositionDescriptor",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 8969,
+              "nodeType": "StructuredDocumentation",
+              "src": "217:413:54",
+              "text": "@notice Produces the URI describing a particular token ID for a position manager\n @dev Note this URI may be a data: URI with the JSON contents directly inlined\n @param positionManager The position manager for which to describe the token\n @param tokenId The ID of the token for which to produce a description, which may not be valid\n @return The URI of the ERC721-compliant metadata"
+            },
+            "functionSelector": "e9dc6375",
+            "id": 8978,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "tokenURI",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 8974,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8971,
+                  "mutability": "mutable",
+                  "name": "positionManager",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8978,
+                  "src": "653:43:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_contract$_INonfungiblePositionManager_$8964",
+                    "typeString": "contract INonfungiblePositionManager"
+                  },
+                  "typeName": {
+                    "id": 8970,
+                    "name": "INonfungiblePositionManager",
+                    "nodeType": "UserDefinedTypeName",
+                    "referencedDeclaration": 8964,
+                    "src": "653:27:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_contract$_INonfungiblePositionManager_$8964",
+                      "typeString": "contract INonfungiblePositionManager"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 8973,
+                  "mutability": "mutable",
+                  "name": "tokenId",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8978,
+                  "src": "698:15:54",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 8972,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "698:7:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "652:62:54"
+            },
+            "returnParameters": {
+              "id": 8977,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 8976,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 8978,
+                  "src": "762:13:54",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 8975,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "762:6:54",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "761:15:54"
+            },
+            "scope": 8979,
+            "src": "635:142:54",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 8980,
+        "src": "165:614:54"
+      }
+    ],
+    "src": "45:735:54"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/nonfungiable/INonfungibleTokenPositionDescriptor.sol",
+      "exportedSymbols": {
+        "IERC165": [
+          104
+        ],
+        "IERC721": [
+          1776
+        ],
+        "IERC721Enumerable": [
+          1807
+        ],
+        "IERC721Metadata": [
+          1834
+        ],
+        "IERC721Permit": [
+          7930
+        ],
+        "INonfungiblePositionManager": [
+          8964
+        ],
+        "INonfungibleTokenPositionDescriptor": [
+          8979
+        ],
+        "IPeripheryImmutableState": [
+          7961
+        ],
+        "IPeripheryPayments": [
+          7987
+        ],
+        "IPoolInitializer": [
+          8039
+        ],
+        "PoolAddress": [
+          14550
+        ]
+      },
+      "license": "GPL-2.0-or-later"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 8966,
+        "name": "PragmaDirective",
+        "src": "45:24:54"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 8965,
+          "absolutePath": "project:/contracts/interfaces/nonfungiable/INonfungiblePositionManager.sol",
+          "file": "./INonfungiblePositionManager.sol",
+          "scope": 8980,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 8967,
+        "name": "ImportDirective",
+        "src": "71:43:54"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            8979
+          ],
+          "name": "INonfungibleTokenPositionDescriptor",
+          "scope": 8980
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "@title Describes position NFT tokens via URI"
+            },
+            "id": 8968,
+            "name": "StructuredDocumentation",
+            "src": "116:49:54"
+          },
+          {
+            "attributes": {
+              "functionSelector": "e9dc6375",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "tokenURI",
+              "scope": 8979,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Produces the URI describing a particular token ID for a position manager\n @dev Note this URI may be a data: URI with the JSON contents directly inlined\n @param positionManager The position manager for which to describe the token\n @param tokenId The ID of the token for which to produce a description, which may not be valid\n @return The URI of the ERC721-compliant metadata"
+                },
+                "id": 8969,
+                "name": "StructuredDocumentation",
+                "src": "217:413:54"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "positionManager",
+                      "scope": 8978,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "contract INonfungiblePositionManager",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "INonfungiblePositionManager",
+                          "referencedDeclaration": 8964,
+                          "type": "contract INonfungiblePositionManager"
+                        },
+                        "id": 8970,
+                        "name": "UserDefinedTypeName",
+                        "src": "653:27:54"
+                      }
+                    ],
+                    "id": 8971,
+                    "name": "VariableDeclaration",
+                    "src": "653:43:54"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tokenId",
+                      "scope": 8978,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 8972,
+                        "name": "ElementaryTypeName",
+                        "src": "698:7:54"
+                      }
+                    ],
+                    "id": 8973,
+                    "name": "VariableDeclaration",
+                    "src": "698:15:54"
+                  }
+                ],
+                "id": 8974,
+                "name": "ParameterList",
+                "src": "652:62:54"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "scope": 8978,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "string",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "string",
+                          "type": "string"
+                        },
+                        "id": 8975,
+                        "name": "ElementaryTypeName",
+                        "src": "762:6:54"
+                      }
+                    ],
+                    "id": 8976,
+                    "name": "VariableDeclaration",
+                    "src": "762:13:54"
+                  }
+                ],
+                "id": 8977,
+                "name": "ParameterList",
+                "src": "761:15:54"
+              }
+            ],
+            "id": 8978,
+            "name": "FunctionDefinition",
+            "src": "635:142:54"
+          }
+        ],
+        "id": 8979,
+        "name": "ContractDefinition",
+        "src": "165:614:54"
+      }
+    ],
+    "id": 8980,
+    "name": "SourceUnit",
+    "src": "45:735:54"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-25T02:20:03.859Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "tokenURI(address,uint256)": {
+        "details": "Note this URI may be a data: URI with the JSON contents directly inlined",
+        "params": {
+          "positionManager": "The position manager for which to describe the token",
+          "tokenId": "The ID of the token for which to produce a description, which may not be valid"
+        },
+        "returns": {
+          "_0": "The URI of the ERC721-compliant metadata"
+        }
+      }
+    },
+    "title": "Describes position NFT tokens via URI",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "tokenURI(address,uint256)": {
+        "notice": "Produces the URI describing a particular token ID for a position manager"
+      }
+    },
+    "version": 1
+  }
+}

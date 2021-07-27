@@ -1,0 +1,414 @@
+{
+  "contractName": "IUniswapV3MintCallback",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount0Owed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount1Owed",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "uniswapV3MintCallback",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount0Owed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"amount1Owed\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"uniswapV3MintCallback\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"uniswapV3MintCallback(uint256,uint256,bytes)\":{\"details\":\"In the implementation you must pay the pool tokens owed for the minted liquidity. The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.\",\"params\":{\"amount0Owed\":\"The amount of token0 due to the pool for the minted liquidity\",\"amount1Owed\":\"The amount of token1 due to the pool for the minted liquidity\",\"data\":\"Any data passed through by the caller via the IUniswapV3PoolActions#mint call\"}}},\"title\":\"Callback for IUniswapV3PoolActions#mint\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"uniswapV3MintCallback(uint256,uint256,bytes)\":{\"notice\":\"Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint.\"}},\"notice\":\"Any contract that calls IUniswapV3PoolActions#mint must implement this interface\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/callback/IUniswapV3MintCallback.sol\":\"IUniswapV3MintCallback\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/callback/IUniswapV3MintCallback.sol\":{\"keccak256\":\"0x27a9725b8f831a92d16380860c3d348a0b926a7f01b34a54ea6eea78cbdbcd6a\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://7c37ca742c643ca4ba6baadff72b8450c6e340a30f7fea0863dba74030a9bbc7\",\"dweb:/ipfs/QmeKBR6a7tQSX85Q7Lb2wrAWSEFqhC4tTmLo4SzcN3kFmp\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-2.0-or-later\npragma solidity >=0.5.0;\n\n/// @title Callback for IUniswapV3PoolActions#mint\n/// @notice Any contract that calls IUniswapV3PoolActions#mint must implement this interface\ninterface IUniswapV3MintCallback {\n    /// @notice Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint.\n    /// @dev In the implementation you must pay the pool tokens owed for the minted liquidity.\n    /// The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.\n    /// @param amount0Owed The amount of token0 due to the pool for the minted liquidity\n    /// @param amount1Owed The amount of token1 due to the pool for the minted liquidity\n    /// @param data Any data passed through by the caller via the IUniswapV3PoolActions#mint call\n    function uniswapV3MintCallback(\n        uint256 amount0Owed,\n        uint256 amount1Owed,\n        bytes calldata data\n    ) external;\n}\n",
+  "sourcePath": "/Users/shifenghu/Documents/work/study/blockchain/uniswap/v3-ui/uniswap-v3/contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+    "exportedSymbols": {
+      "IUniswapV3MintCallback": [
+        11861
+      ]
+    },
+    "id": 11862,
+    "license": "GPL-2.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 11849,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "45:24:68"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 11850,
+          "nodeType": "StructuredDocumentation",
+          "src": "71:144:68",
+          "text": "@title Callback for IUniswapV3PoolActions#mint\n @notice Any contract that calls IUniswapV3PoolActions#mint must implement this interface"
+        },
+        "fullyImplemented": false,
+        "id": 11861,
+        "linearizedBaseContracts": [
+          11861
+        ],
+        "name": "IUniswapV3MintCallback",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 11851,
+              "nodeType": "StructuredDocumentation",
+              "src": "254:585:68",
+              "text": "@notice Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint.\n @dev In the implementation you must pay the pool tokens owed for the minted liquidity.\n The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.\n @param amount0Owed The amount of token0 due to the pool for the minted liquidity\n @param amount1Owed The amount of token1 due to the pool for the minted liquidity\n @param data Any data passed through by the caller via the IUniswapV3PoolActions#mint call"
+            },
+            "functionSelector": "d3487997",
+            "id": 11860,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "uniswapV3MintCallback",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 11858,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 11853,
+                  "mutability": "mutable",
+                  "name": "amount0Owed",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11860,
+                  "src": "884:19:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11852,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "884:7:68",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11855,
+                  "mutability": "mutable",
+                  "name": "amount1Owed",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11860,
+                  "src": "913:19:68",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 11854,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "913:7:68",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 11857,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 11860,
+                  "src": "942:19:68",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 11856,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "942:5:68",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "874:93:68"
+            },
+            "returnParameters": {
+              "id": 11859,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "976:0:68"
+            },
+            "scope": 11861,
+            "src": "844:133:68",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 11862,
+        "src": "215:764:68"
+      }
+    ],
+    "src": "45:935:68"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/callback/IUniswapV3MintCallback.sol",
+      "exportedSymbols": {
+        "IUniswapV3MintCallback": [
+          11861
+        ]
+      },
+      "license": "GPL-2.0-or-later"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 11849,
+        "name": "PragmaDirective",
+        "src": "45:24:68"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            11861
+          ],
+          "name": "IUniswapV3MintCallback",
+          "scope": 11862
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "@title Callback for IUniswapV3PoolActions#mint\n @notice Any contract that calls IUniswapV3PoolActions#mint must implement this interface"
+            },
+            "id": 11850,
+            "name": "StructuredDocumentation",
+            "src": "71:144:68"
+          },
+          {
+            "attributes": {
+              "functionSelector": "d3487997",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "uniswapV3MintCallback",
+              "scope": 11861,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint.\n @dev In the implementation you must pay the pool tokens owed for the minted liquidity.\n The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.\n @param amount0Owed The amount of token0 due to the pool for the minted liquidity\n @param amount1Owed The amount of token1 due to the pool for the minted liquidity\n @param data Any data passed through by the caller via the IUniswapV3PoolActions#mint call"
+                },
+                "id": 11851,
+                "name": "StructuredDocumentation",
+                "src": "254:585:68"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount0Owed",
+                      "scope": 11860,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11852,
+                        "name": "ElementaryTypeName",
+                        "src": "884:7:68"
+                      }
+                    ],
+                    "id": 11853,
+                    "name": "VariableDeclaration",
+                    "src": "884:19:68"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "amount1Owed",
+                      "scope": 11860,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 11854,
+                        "name": "ElementaryTypeName",
+                        "src": "913:7:68"
+                      }
+                    ],
+                    "id": 11855,
+                    "name": "VariableDeclaration",
+                    "src": "913:19:68"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "data",
+                      "scope": 11860,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "bytes",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "bytes",
+                          "type": "bytes"
+                        },
+                        "id": 11856,
+                        "name": "ElementaryTypeName",
+                        "src": "942:5:68"
+                      }
+                    ],
+                    "id": 11857,
+                    "name": "VariableDeclaration",
+                    "src": "942:19:68"
+                  }
+                ],
+                "id": 11858,
+                "name": "ParameterList",
+                "src": "874:93:68"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 11859,
+                "name": "ParameterList",
+                "src": "976:0:68"
+              }
+            ],
+            "id": 11860,
+            "name": "FunctionDefinition",
+            "src": "844:133:68"
+          }
+        ],
+        "id": 11861,
+        "name": "ContractDefinition",
+        "src": "215:764:68"
+      }
+    ],
+    "id": 11862,
+    "name": "SourceUnit",
+    "src": "45:935:68"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-23T07:16:04.441Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "uniswapV3MintCallback(uint256,uint256,bytes)": {
+        "details": "In the implementation you must pay the pool tokens owed for the minted liquidity. The caller of this method must be checked to be a UniswapV3Pool deployed by the canonical UniswapV3Factory.",
+        "params": {
+          "amount0Owed": "The amount of token0 due to the pool for the minted liquidity",
+          "amount1Owed": "The amount of token1 due to the pool for the minted liquidity",
+          "data": "Any data passed through by the caller via the IUniswapV3PoolActions#mint call"
+        }
+      }
+    },
+    "title": "Callback for IUniswapV3PoolActions#mint",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "uniswapV3MintCallback(uint256,uint256,bytes)": {
+        "notice": "Called to `msg.sender` after minting liquidity to a position from IUniswapV3Pool#mint."
+      }
+    },
+    "notice": "Any contract that calls IUniswapV3PoolActions#mint must implement this interface",
+    "version": 1
+  }
+}

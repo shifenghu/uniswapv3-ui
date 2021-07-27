@@ -1,0 +1,857 @@
+{
+  "contractName": "IUniswapV3PoolDerivedState",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint32[]",
+          "name": "secondsAgos",
+          "type": "uint32[]"
+        }
+      ],
+      "name": "observe",
+      "outputs": [
+        {
+          "internalType": "int56[]",
+          "name": "tickCumulatives",
+          "type": "int56[]"
+        },
+        {
+          "internalType": "uint160[]",
+          "name": "secondsPerLiquidityCumulativeX128s",
+          "type": "uint160[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "int24",
+          "name": "tickLower",
+          "type": "int24"
+        },
+        {
+          "internalType": "int24",
+          "name": "tickUpper",
+          "type": "int24"
+        }
+      ],
+      "name": "snapshotCumulativesInside",
+      "outputs": [
+        {
+          "internalType": "int56",
+          "name": "tickCumulativeInside",
+          "type": "int56"
+        },
+        {
+          "internalType": "uint160",
+          "name": "secondsPerLiquidityInsideX128",
+          "type": "uint160"
+        },
+        {
+          "internalType": "uint32",
+          "name": "secondsInside",
+          "type": "uint32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"uint32[]\",\"name\":\"secondsAgos\",\"type\":\"uint32[]\"}],\"name\":\"observe\",\"outputs\":[{\"internalType\":\"int56[]\",\"name\":\"tickCumulatives\",\"type\":\"int56[]\"},{\"internalType\":\"uint160[]\",\"name\":\"secondsPerLiquidityCumulativeX128s\",\"type\":\"uint160[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"int24\",\"name\":\"tickLower\",\"type\":\"int24\"},{\"internalType\":\"int24\",\"name\":\"tickUpper\",\"type\":\"int24\"}],\"name\":\"snapshotCumulativesInside\",\"outputs\":[{\"internalType\":\"int56\",\"name\":\"tickCumulativeInside\",\"type\":\"int56\"},{\"internalType\":\"uint160\",\"name\":\"secondsPerLiquidityInsideX128\",\"type\":\"uint160\"},{\"internalType\":\"uint32\",\"name\":\"secondsInside\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"observe(uint32[])\":{\"details\":\"To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick, you must call it with secondsAgos = [3600, 0].The time weighted average tick represents the geometric time weighted average price of the pool, in log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go from a tick value to a ratio.\",\"params\":{\"secondsAgos\":\"From how long ago each cumulative tick and liquidity value should be returned\"},\"returns\":{\"secondsPerLiquidityCumulativeX128s\":\"Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block timestamp\",\"tickCumulatives\":\"Cumulative tick values as of each `secondsAgos` from the current block timestamp\"}},\"snapshotCumulativesInside(int24,int24)\":{\"details\":\"Snapshots must only be compared to other snapshots, taken over a period for which a position existed. I.e., snapshots cannot be compared if a position is not held for the entire period between when the first snapshot is taken and the second snapshot is taken.\",\"params\":{\"tickLower\":\"The lower tick of the range\",\"tickUpper\":\"The upper tick of the range\"},\"returns\":{\"secondsInside\":\"The snapshot of seconds per liquidity for the range\",\"secondsPerLiquidityInsideX128\":\"The snapshot of seconds per liquidity for the range\",\"tickCumulativeInside\":\"The snapshot of the tick accumulator for the range\"}}},\"title\":\"Pool state that is not stored\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"observe(uint32[])\":{\"notice\":\"Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp\"},\"snapshotCumulativesInside(int24,int24)\":{\"notice\":\"Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range\"}},\"notice\":\"Contains view functions to provide information about the pool that is computed rather than stored on the blockchain. The functions here may have variable gas costs.\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol\":\"IUniswapV3PoolDerivedState\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol\":{\"keccak256\":\"0x75a1cde36f8d8e785df6b61c2b87c9a25f1a7bf05567bd490f021113286c7966\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://37c0e501706cf5f24fb890a82eeade82143c97927b0c53062aeb4d2783193010\",\"dweb:/ipfs/QmQ7yGr91eZCyzTuoQeRSwHtWY2RkhCrmrRv9Zf2HtbD1y\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-2.0-or-later\npragma solidity >=0.5.0;\n\n/// @title Pool state that is not stored\n/// @notice Contains view functions to provide information about the pool that is computed rather than stored on the\n/// blockchain. The functions here may have variable gas costs.\ninterface IUniswapV3PoolDerivedState {\n    /// @notice Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp\n    /// @dev To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing\n    /// the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick,\n    /// you must call it with secondsAgos = [3600, 0].\n    /// @dev The time weighted average tick represents the geometric time weighted average price of the pool, in\n    /// log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go from a tick value to a ratio.\n    /// @param secondsAgos From how long ago each cumulative tick and liquidity value should be returned\n    /// @return tickCumulatives Cumulative tick values as of each `secondsAgos` from the current block timestamp\n    /// @return secondsPerLiquidityCumulativeX128s Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block\n    /// timestamp\n    function observe(uint32[] calldata secondsAgos)\n        external\n        view\n        returns (\n            int56[] memory tickCumulatives,\n            uint160[] memory secondsPerLiquidityCumulativeX128s\n        );\n\n    /// @notice Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range\n    /// @dev Snapshots must only be compared to other snapshots, taken over a period for which a position existed.\n    /// I.e., snapshots cannot be compared if a position is not held for the entire period between when the first\n    /// snapshot is taken and the second snapshot is taken.\n    /// @param tickLower The lower tick of the range\n    /// @param tickUpper The upper tick of the range\n    /// @return tickCumulativeInside The snapshot of the tick accumulator for the range\n    /// @return secondsPerLiquidityInsideX128 The snapshot of seconds per liquidity for the range\n    /// @return secondsInside The snapshot of seconds per liquidity for the range\n    function snapshotCumulativesInside(int24 tickLower, int24 tickUpper)\n        external\n        view\n        returns (\n            int56 tickCumulativeInside,\n            uint160 secondsPerLiquidityInsideX128,\n            uint32 secondsInside\n        );\n}\n",
+  "sourcePath": "/Users/shifenghu/Documents/work/study/blockchain/uniswap/v3-ui/uniswap-v3/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+    "exportedSymbols": {
+      "IUniswapV3PoolDerivedState": [
+        12267
+      ]
+    },
+    "id": 12268,
+    "license": "GPL-2.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 12238,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "45:24:76"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 12239,
+          "nodeType": "StructuredDocumentation",
+          "src": "71:222:76",
+          "text": "@title Pool state that is not stored\n @notice Contains view functions to provide information about the pool that is computed rather than stored on the\n blockchain. The functions here may have variable gas costs."
+        },
+        "fullyImplemented": false,
+        "id": 12267,
+        "linearizedBaseContracts": [
+          12267
+        ],
+        "name": "IUniswapV3PoolDerivedState",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 12240,
+              "nodeType": "StructuredDocumentation",
+              "src": "336:1045:76",
+              "text": "@notice Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp\n @dev To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing\n the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick,\n you must call it with secondsAgos = [3600, 0].\n @dev The time weighted average tick represents the geometric time weighted average price of the pool, in\n log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go from a tick value to a ratio.\n @param secondsAgos From how long ago each cumulative tick and liquidity value should be returned\n @return tickCumulatives Cumulative tick values as of each `secondsAgos` from the current block timestamp\n @return secondsPerLiquidityCumulativeX128s Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block\n timestamp"
+            },
+            "functionSelector": "883bdbfd",
+            "id": 12252,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "observe",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12244,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12243,
+                  "mutability": "mutable",
+                  "name": "secondsAgos",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12252,
+                  "src": "1403:29:76",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint32_$dyn_calldata_ptr",
+                    "typeString": "uint32[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 12241,
+                      "name": "uint32",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1403:6:76",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint32",
+                        "typeString": "uint32"
+                      }
+                    },
+                    "id": 12242,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1403:8:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint32_$dyn_storage_ptr",
+                      "typeString": "uint32[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1402:31:76"
+            },
+            "returnParameters": {
+              "id": 12251,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12247,
+                  "mutability": "mutable",
+                  "name": "tickCumulatives",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12252,
+                  "src": "1494:30:76",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_int56_$dyn_memory_ptr",
+                    "typeString": "int56[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 12245,
+                      "name": "int56",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1494:5:76",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int56",
+                        "typeString": "int56"
+                      }
+                    },
+                    "id": 12246,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1494:7:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_int56_$dyn_storage_ptr",
+                      "typeString": "int56[]"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12250,
+                  "mutability": "mutable",
+                  "name": "secondsPerLiquidityCumulativeX128s",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12252,
+                  "src": "1538:51:76",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_uint160_$dyn_memory_ptr",
+                    "typeString": "uint160[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "id": 12248,
+                      "name": "uint160",
+                      "nodeType": "ElementaryTypeName",
+                      "src": "1538:7:76",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint160",
+                        "typeString": "uint160"
+                      }
+                    },
+                    "id": 12249,
+                    "nodeType": "ArrayTypeName",
+                    "src": "1538:9:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_uint160_$dyn_storage_ptr",
+                      "typeString": "uint160[]"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1480:119:76"
+            },
+            "scope": 12267,
+            "src": "1386:214:76",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 12253,
+              "nodeType": "StructuredDocumentation",
+              "src": "1606:771:76",
+              "text": "@notice Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range\n @dev Snapshots must only be compared to other snapshots, taken over a period for which a position existed.\n I.e., snapshots cannot be compared if a position is not held for the entire period between when the first\n snapshot is taken and the second snapshot is taken.\n @param tickLower The lower tick of the range\n @param tickUpper The upper tick of the range\n @return tickCumulativeInside The snapshot of the tick accumulator for the range\n @return secondsPerLiquidityInsideX128 The snapshot of seconds per liquidity for the range\n @return secondsInside The snapshot of seconds per liquidity for the range"
+            },
+            "functionSelector": "a38807f2",
+            "id": 12266,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "snapshotCumulativesInside",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 12258,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12255,
+                  "mutability": "mutable",
+                  "name": "tickLower",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12266,
+                  "src": "2417:15:76",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  },
+                  "typeName": {
+                    "id": 12254,
+                    "name": "int24",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2417:5:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int24",
+                      "typeString": "int24"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12257,
+                  "mutability": "mutable",
+                  "name": "tickUpper",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12266,
+                  "src": "2434:15:76",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int24",
+                    "typeString": "int24"
+                  },
+                  "typeName": {
+                    "id": 12256,
+                    "name": "int24",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2434:5:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int24",
+                      "typeString": "int24"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2416:34:76"
+            },
+            "returnParameters": {
+              "id": 12265,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 12260,
+                  "mutability": "mutable",
+                  "name": "tickCumulativeInside",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12266,
+                  "src": "2511:26:76",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int56",
+                    "typeString": "int56"
+                  },
+                  "typeName": {
+                    "id": 12259,
+                    "name": "int56",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2511:5:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int56",
+                      "typeString": "int56"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12262,
+                  "mutability": "mutable",
+                  "name": "secondsPerLiquidityInsideX128",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12266,
+                  "src": "2551:37:76",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint160",
+                    "typeString": "uint160"
+                  },
+                  "typeName": {
+                    "id": 12261,
+                    "name": "uint160",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2551:7:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint160",
+                      "typeString": "uint160"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 12264,
+                  "mutability": "mutable",
+                  "name": "secondsInside",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12266,
+                  "src": "2602:20:76",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint32",
+                    "typeString": "uint32"
+                  },
+                  "typeName": {
+                    "id": 12263,
+                    "name": "uint32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2602:6:76",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint32",
+                      "typeString": "uint32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2497:135:76"
+            },
+            "scope": 12267,
+            "src": "2382:251:76",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 12268,
+        "src": "293:2342:76"
+      }
+    ],
+    "src": "45:2591:76"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/interfaces/pool/IUniswapV3PoolDerivedState.sol",
+      "exportedSymbols": {
+        "IUniswapV3PoolDerivedState": [
+          12267
+        ]
+      },
+      "license": "GPL-2.0-or-later"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 12238,
+        "name": "PragmaDirective",
+        "src": "45:24:76"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            12267
+          ],
+          "name": "IUniswapV3PoolDerivedState",
+          "scope": 12268
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "@title Pool state that is not stored\n @notice Contains view functions to provide information about the pool that is computed rather than stored on the\n blockchain. The functions here may have variable gas costs."
+            },
+            "id": 12239,
+            "name": "StructuredDocumentation",
+            "src": "71:222:76"
+          },
+          {
+            "attributes": {
+              "functionSelector": "883bdbfd",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "observe",
+              "scope": 12267,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp\n @dev To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing\n the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick,\n you must call it with secondsAgos = [3600, 0].\n @dev The time weighted average tick represents the geometric time weighted average price of the pool, in\n log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go from a tick value to a ratio.\n @param secondsAgos From how long ago each cumulative tick and liquidity value should be returned\n @return tickCumulatives Cumulative tick values as of each `secondsAgos` from the current block timestamp\n @return secondsPerLiquidityCumulativeX128s Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block\n timestamp"
+                },
+                "id": 12240,
+                "name": "StructuredDocumentation",
+                "src": "336:1045:76"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "secondsAgos",
+                      "scope": 12252,
+                      "stateVariable": false,
+                      "storageLocation": "calldata",
+                      "type": "uint32[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "uint32[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint32",
+                              "type": "uint32"
+                            },
+                            "id": 12241,
+                            "name": "ElementaryTypeName",
+                            "src": "1403:6:76"
+                          }
+                        ],
+                        "id": 12242,
+                        "name": "ArrayTypeName",
+                        "src": "1403:8:76"
+                      }
+                    ],
+                    "id": 12243,
+                    "name": "VariableDeclaration",
+                    "src": "1403:29:76"
+                  }
+                ],
+                "id": 12244,
+                "name": "ParameterList",
+                "src": "1402:31:76"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tickCumulatives",
+                      "scope": 12252,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "int56[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "int56[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "int56",
+                              "type": "int56"
+                            },
+                            "id": 12245,
+                            "name": "ElementaryTypeName",
+                            "src": "1494:5:76"
+                          }
+                        ],
+                        "id": 12246,
+                        "name": "ArrayTypeName",
+                        "src": "1494:7:76"
+                      }
+                    ],
+                    "id": 12247,
+                    "name": "VariableDeclaration",
+                    "src": "1494:30:76"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "secondsPerLiquidityCumulativeX128s",
+                      "scope": 12252,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "uint160[]",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "type": "uint160[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint160",
+                              "type": "uint160"
+                            },
+                            "id": 12248,
+                            "name": "ElementaryTypeName",
+                            "src": "1538:7:76"
+                          }
+                        ],
+                        "id": 12249,
+                        "name": "ArrayTypeName",
+                        "src": "1538:9:76"
+                      }
+                    ],
+                    "id": 12250,
+                    "name": "VariableDeclaration",
+                    "src": "1538:51:76"
+                  }
+                ],
+                "id": 12251,
+                "name": "ParameterList",
+                "src": "1480:119:76"
+              }
+            ],
+            "id": 12252,
+            "name": "FunctionDefinition",
+            "src": "1386:214:76"
+          },
+          {
+            "attributes": {
+              "functionSelector": "a38807f2",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "snapshotCumulativesInside",
+              "scope": 12267,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "text": "@notice Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range\n @dev Snapshots must only be compared to other snapshots, taken over a period for which a position existed.\n I.e., snapshots cannot be compared if a position is not held for the entire period between when the first\n snapshot is taken and the second snapshot is taken.\n @param tickLower The lower tick of the range\n @param tickUpper The upper tick of the range\n @return tickCumulativeInside The snapshot of the tick accumulator for the range\n @return secondsPerLiquidityInsideX128 The snapshot of seconds per liquidity for the range\n @return secondsInside The snapshot of seconds per liquidity for the range"
+                },
+                "id": 12253,
+                "name": "StructuredDocumentation",
+                "src": "1606:771:76"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tickLower",
+                      "scope": 12266,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "int24",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "int24",
+                          "type": "int24"
+                        },
+                        "id": 12254,
+                        "name": "ElementaryTypeName",
+                        "src": "2417:5:76"
+                      }
+                    ],
+                    "id": 12255,
+                    "name": "VariableDeclaration",
+                    "src": "2417:15:76"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tickUpper",
+                      "scope": 12266,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "int24",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "int24",
+                          "type": "int24"
+                        },
+                        "id": 12256,
+                        "name": "ElementaryTypeName",
+                        "src": "2434:5:76"
+                      }
+                    ],
+                    "id": 12257,
+                    "name": "VariableDeclaration",
+                    "src": "2434:15:76"
+                  }
+                ],
+                "id": 12258,
+                "name": "ParameterList",
+                "src": "2416:34:76"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "tickCumulativeInside",
+                      "scope": 12266,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "int56",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "int56",
+                          "type": "int56"
+                        },
+                        "id": 12259,
+                        "name": "ElementaryTypeName",
+                        "src": "2511:5:76"
+                      }
+                    ],
+                    "id": 12260,
+                    "name": "VariableDeclaration",
+                    "src": "2511:26:76"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "secondsPerLiquidityInsideX128",
+                      "scope": 12266,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint160",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint160",
+                          "type": "uint160"
+                        },
+                        "id": 12261,
+                        "name": "ElementaryTypeName",
+                        "src": "2551:7:76"
+                      }
+                    ],
+                    "id": 12262,
+                    "name": "VariableDeclaration",
+                    "src": "2551:37:76"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "secondsInside",
+                      "scope": 12266,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint32",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint32",
+                          "type": "uint32"
+                        },
+                        "id": 12263,
+                        "name": "ElementaryTypeName",
+                        "src": "2602:6:76"
+                      }
+                    ],
+                    "id": 12264,
+                    "name": "VariableDeclaration",
+                    "src": "2602:20:76"
+                  }
+                ],
+                "id": 12265,
+                "name": "ParameterList",
+                "src": "2497:135:76"
+              }
+            ],
+            "id": 12266,
+            "name": "FunctionDefinition",
+            "src": "2382:251:76"
+          }
+        ],
+        "id": 12267,
+        "name": "ContractDefinition",
+        "src": "293:2342:76"
+      }
+    ],
+    "id": 12268,
+    "name": "SourceUnit",
+    "src": "45:2591:76"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-23T07:16:04.444Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "observe(uint32[])": {
+        "details": "To get a time weighted average tick or liquidity-in-range, you must call this with two values, one representing the beginning of the period and another for the end of the period. E.g., to get the last hour time-weighted average tick, you must call it with secondsAgos = [3600, 0].The time weighted average tick represents the geometric time weighted average price of the pool, in log base sqrt(1.0001) of token1 / token0. The TickMath library can be used to go from a tick value to a ratio.",
+        "params": {
+          "secondsAgos": "From how long ago each cumulative tick and liquidity value should be returned"
+        },
+        "returns": {
+          "secondsPerLiquidityCumulativeX128s": "Cumulative seconds per liquidity-in-range value as of each `secondsAgos` from the current block timestamp",
+          "tickCumulatives": "Cumulative tick values as of each `secondsAgos` from the current block timestamp"
+        }
+      },
+      "snapshotCumulativesInside(int24,int24)": {
+        "details": "Snapshots must only be compared to other snapshots, taken over a period for which a position existed. I.e., snapshots cannot be compared if a position is not held for the entire period between when the first snapshot is taken and the second snapshot is taken.",
+        "params": {
+          "tickLower": "The lower tick of the range",
+          "tickUpper": "The upper tick of the range"
+        },
+        "returns": {
+          "secondsInside": "The snapshot of seconds per liquidity for the range",
+          "secondsPerLiquidityInsideX128": "The snapshot of seconds per liquidity for the range",
+          "tickCumulativeInside": "The snapshot of the tick accumulator for the range"
+        }
+      }
+    },
+    "title": "Pool state that is not stored",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "observe(uint32[])": {
+        "notice": "Returns the cumulative tick and liquidity as of each timestamp `secondsAgo` from the current block timestamp"
+      },
+      "snapshotCumulativesInside(int24,int24)": {
+        "notice": "Returns a snapshot of the tick cumulative, seconds per liquidity and seconds inside a tick range"
+      }
+    },
+    "notice": "Contains view functions to provide information about the pool that is computed rather than stored on the blockchain. The functions here may have variable gas costs.",
+    "version": 1
+  }
+}

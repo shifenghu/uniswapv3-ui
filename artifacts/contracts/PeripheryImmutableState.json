@@ -1,0 +1,796 @@
+{
+  "contractName": "PeripheryImmutableState",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "WETH9",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "factory",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.7.6+commit.7338295f\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"WETH9\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"factory\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"stateVariables\":{\"WETH9\":{\"return\":\"Returns the address of WETH9\"},\"factory\":{\"return\":\"Returns the address of the Uniswap V3 factory\"}},\"title\":\"Immutable state\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"Immutable state used by periphery contracts\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/base/PeripheryImmutableState.sol\":\"PeripheryImmutableState\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/base/PeripheryImmutableState.sol\":{\"keccak256\":\"0x505ec6ea226b3ae69b47ba47e59788d9201ba6494f2f0d64a7921763ad4e144b\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://a45a47eb16082d6d8fa01807f9984a74addf9a03388f4483fc3b2634b35ecb5d\",\"dweb:/ipfs/QmR6ANoXnpWXXhZtxCZiGE3uh6UvfypBzsvsjxSGuP8ur2\"]},\"project:/contracts/interfaces/IPeripheryImmutableState.sol\":{\"keccak256\":\"0x7affcfeb5127c0925a71d6a65345e117c33537523aeca7bc98085ead8452519d\",\"license\":\"GPL-2.0-or-later\",\"urls\":[\"bzz-raw://e16b291294210e71cb0f20cd0afe62ae2dc6878d627f5ccc19c4dc9cd80aec3f\",\"dweb:/ipfs/QmQGitSyBr26nour81BZmpmDMyJpvZRqHQZvnCD1Acb127\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: GPL-2.0-or-later\npragma solidity >=0.7.6;\n\nimport \"../interfaces/IPeripheryImmutableState.sol\";\n\n/// @title Immutable state\n/// @notice Immutable state used by periphery contracts\nabstract contract PeripheryImmutableState is IPeripheryImmutableState {\n    /// @inheritdoc IPeripheryImmutableState\n    address public immutable override factory;\n    /// @inheritdoc IPeripheryImmutableState\n    address public immutable override WETH9;\n\n    constructor(address _factory, address _WETH9) {\n        factory = _factory;\n        WETH9 = _WETH9;\n    }\n}\n",
+  "sourcePath": "/Users/shifenghu/Documents/work/study/blockchain/uniswap/v3-ui/uniswap-v3/contracts/base/PeripheryImmutableState.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/base/PeripheryImmutableState.sol",
+    "exportedSymbols": {
+      "IPeripheryImmutableState": [
+        11099
+      ],
+      "PeripheryImmutableState": [
+        6161
+      ]
+    },
+    "id": 6162,
+    "license": "GPL-2.0-or-later",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 6132,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.7",
+          ".6"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "45:24:37"
+      },
+      {
+        "absolutePath": "project:/contracts/interfaces/IPeripheryImmutableState.sol",
+        "file": "../interfaces/IPeripheryImmutableState.sol",
+        "id": 6133,
+        "nodeType": "ImportDirective",
+        "scope": 6162,
+        "sourceUnit": 11100,
+        "src": "71:52:37",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": true,
+        "baseContracts": [
+          {
+            "baseName": {
+              "id": 6135,
+              "name": "IPeripheryImmutableState",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 11099,
+              "src": "253:24:37",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_IPeripheryImmutableState_$11099",
+                "typeString": "contract IPeripheryImmutableState"
+              }
+            },
+            "id": 6136,
+            "nodeType": "InheritanceSpecifier",
+            "src": "253:24:37"
+          }
+        ],
+        "contractDependencies": [
+          11099
+        ],
+        "contractKind": "contract",
+        "documentation": {
+          "id": 6134,
+          "nodeType": "StructuredDocumentation",
+          "src": "125:83:37",
+          "text": "@title Immutable state\n @notice Immutable state used by periphery contracts"
+        },
+        "fullyImplemented": true,
+        "id": 6161,
+        "linearizedBaseContracts": [
+          6161,
+          11099
+        ],
+        "name": "PeripheryImmutableState",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "baseFunctions": [
+              11092
+            ],
+            "constant": false,
+            "documentation": {
+              "id": 6137,
+              "nodeType": "StructuredDocumentation",
+              "src": "284:40:37",
+              "text": "@inheritdoc IPeripheryImmutableState"
+            },
+            "functionSelector": "c45a0155",
+            "id": 6140,
+            "mutability": "immutable",
+            "name": "factory",
+            "nodeType": "VariableDeclaration",
+            "overrides": {
+              "id": 6139,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "354:8:37"
+            },
+            "scope": 6161,
+            "src": "329:41:37",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6138,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "329:7:37",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "baseFunctions": [
+              11098
+            ],
+            "constant": false,
+            "documentation": {
+              "id": 6141,
+              "nodeType": "StructuredDocumentation",
+              "src": "376:40:37",
+              "text": "@inheritdoc IPeripheryImmutableState"
+            },
+            "functionSelector": "4aa4a4fc",
+            "id": 6144,
+            "mutability": "immutable",
+            "name": "WETH9",
+            "nodeType": "VariableDeclaration",
+            "overrides": {
+              "id": 6143,
+              "nodeType": "OverrideSpecifier",
+              "overrides": [],
+              "src": "446:8:37"
+            },
+            "scope": 6161,
+            "src": "421:39:37",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_address",
+              "typeString": "address"
+            },
+            "typeName": {
+              "id": 6142,
+              "name": "address",
+              "nodeType": "ElementaryTypeName",
+              "src": "421:7:37",
+              "stateMutability": "nonpayable",
+              "typeDescriptions": {
+                "typeIdentifier": "t_address",
+                "typeString": "address"
+              }
+            },
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 6159,
+              "nodeType": "Block",
+              "src": "513:59:37",
+              "statements": [
+                {
+                  "expression": {
+                    "id": 6153,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 6151,
+                      "name": "factory",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6140,
+                      "src": "523:7:37",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 6152,
+                      "name": "_factory",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6146,
+                      "src": "533:8:37",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "523:18:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 6154,
+                  "nodeType": "ExpressionStatement",
+                  "src": "523:18:37"
+                },
+                {
+                  "expression": {
+                    "id": 6157,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "id": 6155,
+                      "name": "WETH9",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6144,
+                      "src": "551:5:37",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "id": 6156,
+                      "name": "_WETH9",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 6148,
+                      "src": "559:6:37",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "src": "551:14:37",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "id": 6158,
+                  "nodeType": "ExpressionStatement",
+                  "src": "551:14:37"
+                }
+              ]
+            },
+            "id": 6160,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 6149,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6146,
+                  "mutability": "mutable",
+                  "name": "_factory",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6160,
+                  "src": "479:16:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6145,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "479:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 6148,
+                  "mutability": "mutable",
+                  "name": "_WETH9",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 6160,
+                  "src": "497:14:37",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 6147,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "497:7:37",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "478:34:37"
+            },
+            "returnParameters": {
+              "id": 6150,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "513:0:37"
+            },
+            "scope": 6161,
+            "src": "467:105:37",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 6162,
+        "src": "208:366:37"
+      }
+    ],
+    "src": "45:530:37"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/base/PeripheryImmutableState.sol",
+      "exportedSymbols": {
+        "IPeripheryImmutableState": [
+          11099
+        ],
+        "PeripheryImmutableState": [
+          6161
+        ]
+      },
+      "license": "GPL-2.0-or-later"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.7",
+            ".6"
+          ]
+        },
+        "id": 6132,
+        "name": "PragmaDirective",
+        "src": "45:24:37"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 11100,
+          "absolutePath": "project:/contracts/interfaces/IPeripheryImmutableState.sol",
+          "file": "../interfaces/IPeripheryImmutableState.sol",
+          "scope": 6162,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 6133,
+        "name": "ImportDirective",
+        "src": "71:52:37"
+      },
+      {
+        "attributes": {
+          "abstract": true,
+          "contractDependencies": [
+            11099
+          ],
+          "contractKind": "contract",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            6161,
+            11099
+          ],
+          "name": "PeripheryImmutableState",
+          "scope": 6162
+        },
+        "children": [
+          {
+            "attributes": {
+              "text": "@title Immutable state\n @notice Immutable state used by periphery contracts"
+            },
+            "id": 6134,
+            "name": "StructuredDocumentation",
+            "src": "125:83:37"
+          },
+          {
+            "attributes": {},
+            "children": [
+              {
+                "attributes": {
+                  "name": "IPeripheryImmutableState",
+                  "referencedDeclaration": 11099,
+                  "type": "contract IPeripheryImmutableState"
+                },
+                "id": 6135,
+                "name": "UserDefinedTypeName",
+                "src": "253:24:37"
+              }
+            ],
+            "id": 6136,
+            "name": "InheritanceSpecifier",
+            "src": "253:24:37"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                11092
+              ],
+              "constant": false,
+              "functionSelector": "c45a0155",
+              "mutability": "immutable",
+              "name": "factory",
+              "scope": 6161,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 6138,
+                "name": "ElementaryTypeName",
+                "src": "329:7:37"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 6139,
+                "name": "OverrideSpecifier",
+                "src": "354:8:37"
+              },
+              {
+                "attributes": {
+                  "text": "@inheritdoc IPeripheryImmutableState"
+                },
+                "id": 6137,
+                "name": "StructuredDocumentation",
+                "src": "284:40:37"
+              }
+            ],
+            "id": 6140,
+            "name": "VariableDeclaration",
+            "src": "329:41:37"
+          },
+          {
+            "attributes": {
+              "baseFunctions": [
+                11098
+              ],
+              "constant": false,
+              "functionSelector": "4aa4a4fc",
+              "mutability": "immutable",
+              "name": "WETH9",
+              "scope": 6161,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "address",
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "name": "address",
+                  "stateMutability": "nonpayable",
+                  "type": "address"
+                },
+                "id": 6142,
+                "name": "ElementaryTypeName",
+                "src": "421:7:37"
+              },
+              {
+                "attributes": {
+                  "overrides": [
+                    null
+                  ]
+                },
+                "id": 6143,
+                "name": "OverrideSpecifier",
+                "src": "446:8:37"
+              },
+              {
+                "attributes": {
+                  "text": "@inheritdoc IPeripheryImmutableState"
+                },
+                "id": 6141,
+                "name": "StructuredDocumentation",
+                "src": "376:40:37"
+              }
+            ],
+            "id": 6144,
+            "name": "VariableDeclaration",
+            "src": "421:39:37"
+          },
+          {
+            "attributes": {
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 6161,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_factory",
+                      "scope": 6160,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 6145,
+                        "name": "ElementaryTypeName",
+                        "src": "479:7:37"
+                      }
+                    ],
+                    "id": 6146,
+                    "name": "VariableDeclaration",
+                    "src": "479:16:37"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "_WETH9",
+                      "scope": 6160,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 6147,
+                        "name": "ElementaryTypeName",
+                        "src": "497:7:37"
+                      }
+                    ],
+                    "id": 6148,
+                    "name": "VariableDeclaration",
+                    "src": "497:14:37"
+                  }
+                ],
+                "id": 6149,
+                "name": "ParameterList",
+                "src": "478:34:37"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 6150,
+                "name": "ParameterList",
+                "src": "513:0:37"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6140,
+                              "type": "address",
+                              "value": "factory"
+                            },
+                            "id": 6151,
+                            "name": "Identifier",
+                            "src": "523:7:37"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6146,
+                              "type": "address",
+                              "value": "_factory"
+                            },
+                            "id": 6152,
+                            "name": "Identifier",
+                            "src": "533:8:37"
+                          }
+                        ],
+                        "id": 6153,
+                        "name": "Assignment",
+                        "src": "523:18:37"
+                      }
+                    ],
+                    "id": 6154,
+                    "name": "ExpressionStatement",
+                    "src": "523:18:37"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "address"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6144,
+                              "type": "address",
+                              "value": "WETH9"
+                            },
+                            "id": 6155,
+                            "name": "Identifier",
+                            "src": "551:5:37"
+                          },
+                          {
+                            "attributes": {
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 6148,
+                              "type": "address",
+                              "value": "_WETH9"
+                            },
+                            "id": 6156,
+                            "name": "Identifier",
+                            "src": "559:6:37"
+                          }
+                        ],
+                        "id": 6157,
+                        "name": "Assignment",
+                        "src": "551:14:37"
+                      }
+                    ],
+                    "id": 6158,
+                    "name": "ExpressionStatement",
+                    "src": "551:14:37"
+                  }
+                ],
+                "id": 6159,
+                "name": "Block",
+                "src": "513:59:37"
+              }
+            ],
+            "id": 6160,
+            "name": "FunctionDefinition",
+            "src": "467:105:37"
+          }
+        ],
+        "id": 6161,
+        "name": "ContractDefinition",
+        "src": "208:366:37"
+      }
+    ],
+    "id": 6162,
+    "name": "SourceUnit",
+    "src": "45:530:37"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.7.6+commit.7338295f.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.1",
+  "updatedAt": "2021-07-23T07:16:04.480Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "stateVariables": {
+      "WETH9": {
+        "return": "Returns the address of WETH9"
+      },
+      "factory": {
+        "return": "Returns the address of the Uniswap V3 factory"
+      }
+    },
+    "title": "Immutable state",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "Immutable state used by periphery contracts",
+    "version": 1
+  }
+}
